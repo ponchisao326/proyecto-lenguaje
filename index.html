@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/navandfooter.css">
+    <title>Carbon Craft Labs | Welcome</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- Logo + 2 Categories (Ul) + search & cart-->
+        <div class="logo">
+          <a href="/">
+            <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
+          </a>
+        </div>
+        <div class="menu">
+          <ul class="categories">
+            <li class="category-dropdown">
+              <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
+              <ul class="dropdown-menu">
+                <li class="category"><a href="#">DownPipes</a></li>
+                <li class="category"><a href="#">Embragues</a></li>
+                <li class="category"><a href="#">Frenos</a></li>
+                <li class="category"><a href="#">Suspension</a></li>
+                <li class="category"><a href="#">Escapes</a></li>
+                <li class="category"><a href="#">Intercoolers</a></li>
+                <li class="category"><a href="#">Radiadores</a></li>
+              </ul>
+            </li>
+            <li class="category-dropdown">
+              <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
+              <ul class="dropdown-menu">
+                <li class="category"><a href="#">Body Kits</a></li>
+                <li class="category"><a href="#">Vinilos</a></li>
+                <li class="category"><a href="#">Pegatinas</a></li>
+                <li class="category"><a href="#">Alerones</a></li>
+                <li class="category"><a href="#">Frontales</a></li>
+                <li class="category"><a href="#">Difusores</a></li>
+                <li class="category"><a href="#">Paragolpes</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="search-cart">
+          <div class="search">
+            <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
+              <img src="search.svg" alt="Icono de búsqueda" />
+            </button>
+          </div>
+          <div class="cart">
+            <button class="search-cart-button" aria-label="Buscar" onclick="cart()">
+              <img src="cart.svg" alt="Icono de Carrito" />
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <script src="/src/main.js"></script>
+    <script src="src/header.js"></script>
+  </body>
+</html>

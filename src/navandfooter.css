@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body {
+    font-family: "Bebas Neue", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: rgb(0, 0, 0, 0.6);
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    gap: 1rem;
+    list-style: none;
+}
+
+.category-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    background-color: #35424a;
+    padding: 15px 25px;
+    list-style: none;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    min-width: 200px;
+}
+
+.category-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu .category {
+    margin: 8px 0;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu .category a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu .category a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.dropdown-title {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.dropdown-title:hover {
+    cursor: pointer;
+}
+
+/* Añadir flecha decorativa al dropdown (Estilo Bocadillo de texto al hover) */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #35424a transparent;
+}
+.category {
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+
+.search-cart {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-cart-button:hover {
+    cursor: pointer;
+}
+
+.search-cart-button {
+    background: transparent;
+    border: none;
+}
