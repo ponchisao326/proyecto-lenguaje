@@ -1,22 +1,17 @@
-// get cursor position
-let cursorPosition;
+// Objeto para crear variable de estado (derecha | izquierda)
+export let estado = {
+    lado: null // Puede ser 'derecha', 'izquierda' o null
+};
 document.addEventListener('mousemove', (e) => {
     const divDerecha = document.getElementById('divDerecha');
     const divIzquierda = document.getElementById('divIzquierda');
-    const box = document.querySelector('.box');
-
-    // Verifica si el cursor está sobre la caja `.box`
-    if (box && box.contains(e.target)) {
-        divDerecha.classList.remove('cursor-pointer');
-        divIzquierda.classList.remove('cursor-pointer');
-        return;
-    }
 
     // Verifica si el cursor está dentro del área de `divDerecha`
     if (e.clientX > divDerecha.offsetLeft && e.clientX < divDerecha.offsetLeft + divDerecha.offsetWidth &&
         e.clientY > divDerecha.offsetTop && e.clientY < divDerecha.offsetHeight) {
         divDerecha.classList.add('cursor-pointer');
-        console.log('Cursor dentro de divDerecha');
+
+        estado.lado = 'derecha';
     } else {
         divDerecha.classList.remove('cursor-pointer');
     }
@@ -25,7 +20,8 @@ document.addEventListener('mousemove', (e) => {
     if (e.clientX > divIzquierda.offsetLeft && e.clientX < divIzquierda.offsetLeft + divIzquierda.offsetWidth &&
         e.clientY > divIzquierda.offsetTop && e.clientY < divIzquierda.offsetHeight) {
         divIzquierda.classList.add('cursor-pointer');
-        console.log('Cursor dentro de divIzquierda');
+
+        estado.lado = 'izquierda';
     } else {
         divIzquierda.classList.remove('cursor-pointer');
     }

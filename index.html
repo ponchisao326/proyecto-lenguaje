@@ -61,24 +61,26 @@
     </header>
 
     <!-- Titulo en medio dividida la pantalla a la mitad por una linea, dependiendo de donde pongas el cursor aparece una imagen u otra como main -->
-    <main> <!-- Background que cambia dependiendo del cursor (ThreeJS) -->
-        <div class="derecha" id="divDerecha"></div>
-
-      <!-- Linea de 1 pixel blanco divisoria -->
-        <div class="linea"></div>
-
-        <div class="box">
-          <div class="box-header">
-            ¿Qué buscas?
-          </div>
-
-          <div class="box-body">
-            <div class="performance-category">Performance</div>
-            <div class="detailing-category">Detailing</div>
-          </div>
+    <main id="main"> <!-- Background que cambia dependiendo del cursor (ThreeJS) -->
+      <div class="box" id="box">
+        <div class="box-header">
+          ¿Qué buscas?
         </div>
 
-        <div class="izquierda" id="divIzquierda"></div>
+        <div class="box-body">
+          <div class="performance-category">Performance</div>
+          <div class="detailing-category">Detailing</div>
+        </div>
+      </div>
+
+      <div class="derecha" id="divDerecha"></div>
+
+      <!-- Linea de 1 pixel blanco divisoria -->
+      <div class="linea"></div>
+
+
+
+      <div class="izquierda" id="divIzquierda"></div>
     </main>
 
     <script src="/src/landing/main.js"></script>

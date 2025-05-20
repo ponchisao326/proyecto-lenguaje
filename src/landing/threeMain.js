@@ -1,14 +1,18 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { estado } from './main.js';
 
+const main = document.getElementById('main');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
+renderer.setClearColor( 0xbababa, 1 ); // Color de fondo
 //document.body.appendChild( renderer.domElement );
+main.appendChild( renderer.domElement );
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
@@ -19,8 +23,14 @@ camera.position.z = 5;
 
 function animate() {
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    if (estado.lado === 'derecha') {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+    } else if (estado.lado === 'izquierda') {
+        cube.rotation.x -= 0.01;
+        cube.rotation.y -= 0.01;
+    }
 
     renderer.render( scene, camera );
 
