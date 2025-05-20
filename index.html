@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/navandfooter.css">
+    <link rel="stylesheet" href="src/common/navandfooter.css">
+    <link rel="stylesheet" href="src/landing/main.css">
     <title>Carbon Craft Labs | Welcome</title>
   </head>
   <body>
@@ -58,7 +59,23 @@
         </div>
       </nav>
     </header>
-    <script src="/src/main.js"></script>
-    <script src="src/header.js"></script>
+
+    <!-- Titulo en medio dividida la pantalla a la mitad por una linea, dependiendo de donde pongas el cursor aparece una imagen u otra como main -->
+    <main> <!-- Background que cambia dependiendo del cursor (ThreeJS) -->
+        <div class="derecha">
+          <a href="#"> </a>
+        </div>
+
+      <!-- Linea de 1 pixel blanco divisoria -->
+        <div class="linea"></div>
+
+        <div class="izquierda">
+          <a href="#"> </a>
+        </div>
+    </main>
+
+    <script src="/src/landing/main.js"></script>
+    <script src="src/common/header.js"></script>
+    <script type="module" src="src/landing/threeMain.js"></script>
   </body>
 </html>

@@ -8,10 +8,15 @@ body {
 }
 
 header {
-    background: rgb(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
     color: #ffffff;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 1000; /* Coloca la barra por encima del contenido */
 }
 
 img {
@@ -49,7 +54,7 @@ nav {
 .dropdown-menu {
     display: block;
     position: absolute;
-    background-color: #35424a;
+    background: rgba(0, 0, 0, 0.8);
     padding: 15px 25px;
     list-style: none;
     margin: 0;
@@ -112,7 +117,7 @@ nav {
     left: 20px;
     border-width: 0 10px 10px 10px;
     border-style: solid;
-    border-color: transparent transparent #35424a transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
 }
 .category {
     color: white;

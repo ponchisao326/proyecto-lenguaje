@@ -1,0 +1,6 @@
+main {
+    background-image: url("/temp.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
