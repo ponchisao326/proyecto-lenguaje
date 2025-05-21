@@ -9,6 +9,10 @@
     <title>Carbon Craft Labs | Welcome</title>
   </head>
   <body>
+  <!-- Loader -->
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
     <header>
       <nav id="navbar">
         <!-- Logo + 2 Categories (Ul) + search & cart-->
@@ -87,5 +91,11 @@
     <script src="src/common/header.js"></script>
     <script type="module" src="src/landing/framesIzquierda.js"></script>
     <script type="module" src="src/landing/framesDerecha.js"></script>
+    <script type="module" src="src/landing/globalVars.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        document.getElementById('loader').style.display = 'none';
+      });
+    </script>
   </body>
 </html>

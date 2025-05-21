@@ -39,14 +39,16 @@ function renderFrameIzquierda() {
     main.style.backgroundImage = `url(${img.src})`;
 }
 
-export function startAnimation() {
+function startAnimation() {
     stopAnimation();
     animationInterval = setInterval(renderFrameIzquierda, 1000 / fps);
 }
 
-export function stopAnimation() {
+function stopAnimation() {
     if (animationInterval) {
         clearInterval(animationInterval);
         animationInterval = null;
     }
 }
+
+export { framesIzquierda, startAnimation, stopAnimation };

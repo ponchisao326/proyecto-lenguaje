@@ -37,14 +37,16 @@ function renderFrameDerecha() {
     main.style.backgroundImage = `url(${img.src})`;
 }
 
-export function startAnimationRight() {
+function startAnimationRight() {
     stopAnimationRight();
     animationInterval = setInterval(renderFrameDerecha, 1000 / fps);
 }
 
-export function stopAnimationRight() {
+function stopAnimationRight() {
     if (animationInterval) {
         clearInterval(animationInterval);
         animationInterval = null;
     }
 }
+
+export { framesDerecha, startAnimationRight, stopAnimationRight };
