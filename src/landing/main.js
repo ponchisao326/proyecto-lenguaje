@@ -1,28 +1,45 @@
-// Objeto para crear variable de estado (derecha | izquierda)
-export let estado = {
-    lado: null // Puede ser 'derecha', 'izquierda' o null
-};
+import { startAnimation, stopAnimation } from "./framesIzquierda.js";
+import { startAnimationRight, stopAnimationRight } from "./framesDerecha.js";
+import { isDerecha } from "./globalVars.js";
+
+// Configuración inicial
+let estado = { lado: null };
+const divDerecha = document.getElementById('divDerecha');
+const divIzquierda = document.getElementById('divIzquierda');
+
 document.addEventListener('mousemove', (e) => {
-    const divDerecha = document.getElementById('divDerecha');
-    const divIzquierda = document.getElementById('divIzquierda');
-
-    // Verifica si el cursor está dentro del área de `divDerecha`
-    if (e.clientX > divDerecha.offsetLeft && e.clientX < divDerecha.offsetLeft + divDerecha.offsetWidth &&
-        e.clientY > divDerecha.offsetTop && e.clientY < divDerecha.offsetHeight) {
+    // Detectar lado derecho
+    if (e.clientX > window.innerWidth / 2) {
+        if (estado.lado !== 'derecha') {
+            stopAnimation();
+            isDerecha.value = true;
+            estado.lado = 'derecha';
+            startAnimationRight();
+        }
         divDerecha.classList.add('cursor-pointer');
-
-        estado.lado = 'derecha';
-    } else {
-        divDerecha.classList.remove('cursor-pointer');
-    }
-
-    // Verifica si el cursor está dentro del área de `divIzquierda`
-    if (e.clientX > divIzquierda.offsetLeft && e.clientX < divIzquierda.offsetLeft + divIzquierda.offsetWidth &&
-        e.clientY > divIzquierda.offsetTop && e.clientY < divIzquierda.offsetHeight) {
-        divIzquierda.classList.add('cursor-pointer');
-
-        estado.lado = 'izquierda';
-    } else {
         divIzquierda.classList.remove('cursor-pointer');
     }
+    // Detectar lado izquierdo
+    else {
+        if (estado.lado !== 'izquierda') {
+            stopAnimationRight();
+            isDerecha.value = false;
+            estado.lado = 'izquierda';
+            startAnimation();
+        }
+        divIzquierda.classList.add('cursor-pointer');
+        divDerecha.classList.remove('cursor-pointer');
+    }
+});
+
+// Iniciar animación inicial
+startAnimation();
+
+// onClick para los divs
+divDerecha.addEventListener('click', () => {
+    window.location.href = '/detailing';
+});
+
+divIzquierda.addEventListener('click', () => {
+    window.location.href = '/performance';
 });

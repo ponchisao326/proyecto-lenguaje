@@ -1,17 +1,18 @@
 main {
     width: 100%;
     height: 100vh;
+    background-size: initial;
 }
 
 .linea {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1px;
-        height: 100vh;
-        background-color: #fff;
-        z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 2;
 }
 
 .derecha {
