@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contacto | Carbon Craft Labs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/common/navandfooter.css">
+    <link rel="stylesheet" href="src/landing/main.css">
+    <link rel="stylesheet" href="src/contacto/contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<!-- Nav global -->
+<header>
+    <nav id="navbar">
+        <!-- Logo + 2 Categories (Ul) + search & cart-->
+        <div class="logo">
+            <a href="/">
+                <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
+            </a>
+        </div>
+        <div class="menu">
+            <ul class="categories">
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="#">DownPipes</a></li>
+                        <li class="category"><a href="#">Embragues</a></li>
+                        <li class="category"><a href="#">Frenos</a></li>
+                        <li class="category"><a href="#">Suspension</a></li>
+                        <li class="category"><a href="#">Escapes</a></li>
+                        <li class="category"><a href="#">Intercoolers</a></li>
+                        <li class="category"><a href="#">Radiadores</a></li>
+                    </ul>
+                </li>
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="#">Body Kits</a></li>
+                        <li class="category"><a href="#">Vinilos</a></li>
+                        <li class="category"><a href="#">Pegatinas</a></li>
+                        <li class="category"><a href="#">Alerones</a></li>
+                        <li class="category"><a href="#">Frontales</a></li>
+                        <li class="category"><a href="#">Difusores</a></li>
+                        <li class="category"><a href="#">Paragolpes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="search-cart">
+            <div class="search">
+                <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
+                    <img src="search.svg" alt="Icono de búsqueda" />
+                </button>
+            </div>
+            <div class="cart">
+                <button class="search-cart-button" aria-label="Buscar" onclick="cart()">
+                    <img src="cart.svg" alt="Icono de Carrito" />
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="contact-container">
+        <div class="contact-title">Contáctanos</div>
+        <form class="contact-form" action="mailto:info@carboncraftlabs.com" method="POST" enctype="text/plain">
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+            <input type="email" name="email" placeholder="Tu correo electrónico" required />
+            <textarea name="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <div class="contact-links">
+            <a class="contact-link" href="mailto:info@carboncraftlabs.com"><i class="fa-solid fa-envelope"></i> Email</a>
+            <a class="contact-link" href="tel:+34123456789"><i class="fa-solid fa-phone"></i> +34 123 456 789</a>
+            <a class="contact-link" href="https://wa.me/34123456789" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <div class="faq-section">
+            <div class="faq-title">Preguntas Frecuentes</div>
+            <div class="faq-item">
+                <div class="faq-question">¿Cuánto tardan en responder?</div>
+                <div class="faq-answer">Normalmente respondemos en menos de 24 horas hábiles.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo modificar o cancelar mi pedido?</div>
+                <div class="faq-answer">Sí, siempre que el pedido no haya sido enviado. Contáctanos lo antes posible.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Realizan envíos internacionales?</div>
+                <div class="faq-answer">Sí, enviamos a la mayoría de países de Europa. Consulta condiciones en el proceso de compra.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo puedo hacer seguimiento de mi pedido?</div>
+                <div class="faq-answer">Te enviaremos un email con el número de seguimiento una vez tu pedido haya sido enviado.</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer global -->
+<footer class="footer">
+    <div class="footer-bottom">
+        <a href="/"><img src="/CCLabs%20(recortada).svg" alt="Logo Carbon Craft Labs" /></a>
+        &copy; 2024 Carbon Craft Labs. Todos los derechos reservados.
+        <a href="/contacto.html">Contacto</a>
+    </div>
+</footer>
+
+<script src="src/contacto/acordeon.js"></script>
+</body>
+</html>
