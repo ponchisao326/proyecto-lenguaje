@@ -72,8 +72,8 @@
         </div>
 
         <div class="box-body">
-          <div class="performance-category">Performance</div>
-          <div class="detailing-category">Detailing</div>
+          <div class="performance-category" id="performance">Performance</div>
+          <div class="detailing-category" id="detailing">Detailing</div>
         </div>
       </div>
 
@@ -82,10 +82,29 @@
       <!-- Linea de 1 pixel blanco divisoria -->
       <div class="linea"></div>
 
-
+      <!--TODO: Añadir sonido de seleccion como en gta, que suene cuando cambies de div -->
 
       <div class="izquierda" id="divIzquierda"></div>
     </main>
+
+    <section id="about-us"> <!-- Section con div centrado en flex, imagen izquierda, h1, h2 y p -->
+      <div class="about-us-container">
+        <div class="about-us-image">
+          <img src="/about-us.webp" alt="Imagen de un grupo de personas" />
+        </div>
+        <div class="about-us-text">
+          <h1>Sobre Nosotros</h1>
+          <h4>Rendimiento y estilo, sin concesiones.</h4>
+          <p>En Carbon Craft Labs, nos apasiona transformar cada coche en una auténtica obra de ingeniería y estilo. Somos una empresa especializada en la venta de piezas de alto rendimiento y accesorios de detailing para los verdaderos amantes del motor.
+            <br>
+            Desde turbos, downpipes, frenos de alto rendimiento, embragues y sistemas de suspensión, hasta intercoolers, escapes y radiadores, ofrecemos componentes seleccionados para llevar tu coche al siguiente nivel de potencia y eficiencia.
+            <br>
+            Pero no todo es rendimiento. También creemos que un coche debe reflejar tu estilo. Por eso, contamos con una cuidada selección de artículos de detailing y personalización exterior: body kits, alerones, difusores, vinilos, pegatinas, paragolpes y mucho más, pensados para que tu vehículo no solo corra mejor, sino que también se vea espectacular.
+
+          </p>
+        </div>
+      </div>
+    </section>
 
     <script type="module" src="/src/landing/main.js"></script>
     <script src="src/common/header.js"></script>

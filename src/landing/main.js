@@ -6,11 +6,15 @@ import { isDerecha } from "./globalVars.js";
 let estado = { lado: null };
 const divDerecha = document.getElementById('divDerecha');
 const divIzquierda = document.getElementById('divIzquierda');
+const performance = document.getElementById('performance');
+const detailing = document.getElementById('detailing');
 
 document.addEventListener('mousemove', (e) => {
     // Detectar lado derecho
     if (e.clientX > window.innerWidth / 2) {
         if (estado.lado !== 'derecha') {
+            performance.classList.remove('box-selected');
+            detailing.classList.add('box-selected');
             stopAnimation();
             isDerecha.value = true;
             estado.lado = 'derecha';
@@ -22,6 +26,8 @@ document.addEventListener('mousemove', (e) => {
     // Detectar lado izquierdo
     else {
         if (estado.lado !== 'izquierda') {
+            performance.classList.add('box-selected');
+            detailing.classList.remove('box-selected');
             stopAnimationRight();
             isDerecha.value = false;
             estado.lado = 'izquierda';
