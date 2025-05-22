@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/common/navandfooter.css">
     <link rel="stylesheet" href="src/landing/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Carbon Craft Labs | Welcome</title>
   </head>
   <body>
@@ -90,7 +91,7 @@
     <section id="about-us"> <!-- Section con div centrado en flex, imagen izquierda, h1, h2 y p -->
       <div class="about-us-container">
         <div class="about-us-image">
-          <img src="/about-us.webp" alt="Imagen de un grupo de personas" />
+          <img src="/landing/about-us.webp" alt="Imagen de un grupo de personas" />
         </div>
         <div class="about-us-text">
           <h1>Sobre Nosotros</h1>
@@ -106,15 +107,47 @@
       </div>
     </section>
 
-    <script type="module" src="/src/landing/main.js"></script>
+  <!-- Section Slider de Marcas -->
+  <section id="brand-slider" class="slider-container">
+    <ul class="slider">
+      <li class="slide"> <img src="/landing/gray-brand-audi.webp" alt="Logo Audi" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-bmw.webp" alt="Logo BMW" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-ford.webp" alt="Logo Ford" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-mercedes.webp" alt="Logo Mercedes" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-mini.webp" alt="Logo Mini" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-nissan.webp" alt="Logo Nissan" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-porsche.webp" alt="Logo Porsche" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-seat.webp" alt="Logo SEAT" /> </li>
+      <li class="slide"> <img src="/landing/gray-brand-volvo.webp" alt="Logo Volvo" /> </li>
+    </ul>
+  </section>
+
+  <!-- Section de Newsletter con el texto y form dentro de la imagen -->
+  <section id="newsletter">
+    <div class="newsletter-container">
+      <div class="newsletter-text">
+        <h1>Suscríbete a nuestra Newsletter</h1>
+        <p>Recibe las últimas novedades y ofertas exclusivas directamente en tu bandeja de entrada.</p>
+        <form id="newsletter-form" method="post">
+          <input type="email" id="email" name="email" placeholder="Introduce tu correo electrónico" required />
+          <button type="submit">Suscribirse</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2024 Carbon Craft Labs. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script type="module" src="/src/landing/main.js"></script>
     <script src="src/common/header.js"></script>
     <script type="module" src="src/landing/framesIzquierda.js"></script>
     <script type="module" src="src/landing/framesDerecha.js"></script>
     <script type="module" src="src/landing/globalVars.js"></script>
-    <script>
-      window.addEventListener('load', function() {
-        document.getElementById('loader').style.display = 'none';
-      });
-    </script>
+    <script src="src/common/onContentLoad.js"></script>
+    <script src="src/landing/brandSlider.js"></script>
   </body>
 </html>

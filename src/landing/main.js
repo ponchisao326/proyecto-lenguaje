@@ -1,4 +1,4 @@
-import { startAnimation, stopAnimation } from "./framesIzquierda.js";
+import {main, startAnimation, stopAnimation} from "./framesIzquierda.js";
 import { startAnimationRight, stopAnimationRight } from "./framesDerecha.js";
 import { isDerecha } from "./globalVars.js";
 
@@ -10,6 +10,17 @@ const performance = document.getElementById('performance');
 const detailing = document.getElementById('detailing');
 
 document.addEventListener('mousemove', (e) => {
+    const rect = main.getBoundingClientRect();
+    const dentroDeMain =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+    if (!dentroDeMain) {
+        return;
+    }
+
     // Detectar lado derecho
     if (e.clientX > window.innerWidth / 2) {
         if (estado.lado !== 'derecha') {
