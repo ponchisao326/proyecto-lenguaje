@@ -195,3 +195,59 @@ nav {
 .footer-bottom a:hover {
     color: #ffcc00;
 }
+
+/* Media Queries para Carbon Craft Labs */
+
+/* Dispositivos grandes (desktops, 1200px en adelante) */
+@media (min-width: 1200px) {
+    nav {
+        padding: 1.5vh 0;
+    }
+}
+
+/* Dispositivos pequeños (móviles, menores a 768px) */
+@media (max-width: 768px) {
+
+
+    .box-header {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .box-body {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .performance-category,
+    .detailing-category {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .newsletter-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .newsletter-text p {
+        font-size: 1rem;
+    }
+
+    .newsletter-text form {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    #loader .spinner {
+        width: 60px;
+        height: 60px;
+    }
+}
