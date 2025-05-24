@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node server/middleware.js",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,6 +12,9 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "path-to-regexp": "^8.2.0",
     "three": "^0.176.0"
   }
 }
