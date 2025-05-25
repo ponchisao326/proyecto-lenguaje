@@ -7,6 +7,8 @@ async function getProduct(productId) {
 
     const [firstProduct, ...restProducts] = products;
 
+    let product;
+
     // Recorrer los productos y buscar el que coincida con el ID
     if (productId) {
         const product = products.find(p => p.id === productId);
