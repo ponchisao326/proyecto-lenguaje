@@ -38,17 +38,19 @@ app.use((req, res, next) => {
 app.get('/api/products', async (req, res) => {
     try {
         const [products] = await pool.query(`
-      SELECT p.*, 
-        GROUP_CONCAT(DISTINCT f.feature) AS features,
-        GROUP_CONCAT(DISTINCT CONCAT(s.spec_name, ':', s.spec_value)) AS specifications,
-        GROUP_CONCAT(DISTINCT c.compatible_model) AS compatible_models,
-        GROUP_CONCAT(DISTINCT i.image_url) AS images
-      FROM products p
-      LEFT JOIN product_features f ON p.id = f.product_id
-      LEFT JOIN product_specifications s ON p.id = s.product_id
-      LEFT JOIN product_compatibility c ON p.id = c.product_id
-      LEFT JOIN product_images i ON p.id = i.product_id
-      GROUP BY p.id
+            SELECT
+                p.*,
+                GROUP_CONCAT(DISTINCT f.feature) AS features,
+                GROUP_CONCAT(DISTINCT CONCAT(s.spec_name, ':', s.spec_value) ORDER BY s.spec_name) AS specifications,
+                GROUP_CONCAT(DISTINCT c.compatible_model ORDER BY c.compatible_model) AS compatible_models,
+                GROUP_CONCAT(DISTINCT i.image_url ORDER BY i.image_url) AS images
+            FROM products p
+                     LEFT JOIN product_features f ON p.id = f.product_id
+                     LEFT JOIN product_specifications s ON p.id = s.product_id
+                     LEFT JOIN product_compatibility c ON p.id = c.product_id
+                     LEFT JOIN product_images i ON p.id = i.product_id
+            GROUP BY p.id
+            ORDER BY p.id
     `);
 
         const parsedProducts = products.map(product => ({

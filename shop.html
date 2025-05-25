@@ -68,8 +68,6 @@
         </nav>
     </header>
 
-
-
     <main>
         <aside id="sidebar"> <!-- Fetch categories, brands, price & stock to filter items-->
             <div class="sidebar-header">
@@ -85,8 +83,8 @@
             </div>
             <div class="filter-section">
                 <h3>Precio</h3>
-                <input type="range" id="price-range" min="0" max="1000" step="10" />
-                <span id="price-value">$0 - $1000</span>
+                <input type="number" id="min-price" placeholder="Mínimo" min="0" max="1000" step="10" class="precio-rango" />
+                <input type="number" id="max-price" placeholder="Máximo" min="0" max="1000" step="10" class="precio-rango" />
             </div>
             <div class="filter-section">
                 <h3>Disponibilidad</h3>

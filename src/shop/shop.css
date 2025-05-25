@@ -1,32 +1,81 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #f9f9f9;
   font-family: 'Graphik', Assistant, sans-serif;
+  color: #1f2937;
 }
 
 nav {
   font-family: "Bebas Neue", sans-serif;
 }
 
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
 .product-card {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.gallery {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ffffff;
 }
 
 .gallery img {
-    max-width: 200px;
-    height: auto;
-    margin: 0.5rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .gallery img {
+  transform: scale(1.05);
+}
+
+.product-card h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1rem;
+  color: #1f2937;
 }
 
 .price {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    font-weight: bold;
+  margin: 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3b82f6;
 }
+
+.specs {
+  flex-grow: 1;
+  padding: 0 1rem 1rem;
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+.specs p {
+  margin: 0.25rem 0;
+}
+
 
 /* shop.css */
 #sidebar {
@@ -34,17 +83,22 @@ nav {
   max-width: 320px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
   padding: 2rem 1.5rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.2s;
   margin-top: 15vh;
   position: sticky;
-  top: 100px; /* Ajusta según la altura de tu header */
-  height: calc(100vh - 120px); /* Altura completa menos margen superior */
-  overflow-y: auto; /* Para scroll si hay muchos filtros */
-  flex: 0 0 300px; /* Ancho fijo */
+  top: 100px;
+  /* Ajusta según la altura de tu header */
+  height: calc(100vh - 120px);
+  /* Altura completa menos margen superior */
+  overflow-y: auto;
+  /* Para scroll si hay muchos filtros */
+  flex: 0 0 300px;
+  /* Ancho fijo */
 }
+
 @media (min-width: 1024px) {
   #sidebar {
     position: static;
@@ -52,33 +106,40 @@ nav {
     min-height: 600px;
   }
 }
+
 .sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
+
 .sidebar-header h2 {
   font-size: 1.25rem;
   font-weight: 600;
 }
+
 #close-sidebar {
   background: none;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
 }
+
 .filter-section {
   margin-bottom: 1.5rem;
 }
+
 .filter-section h3 {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.75rem;
 }
+
 .filter-search {
   margin-bottom: 1.5rem;
 }
+
 .filter-search input {
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -88,18 +149,22 @@ nav {
   outline: none;
   transition: border 0.2s;
 }
+
 .filter-search input:focus {
   border-color: #6366f1;
 }
+
 .accordion {
   border-radius: 8px;
   overflow: hidden;
   background: #f9fafb;
   margin-bottom: 1.5rem;
 }
-.accordion-item + .accordion-item {
+
+.accordion-item+.accordion-item {
   border-top: 1px solid #e5e7eb;
 }
+
 .accordion-trigger {
   width: 100%;
   background: none;
@@ -113,43 +178,46 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s cubic-bezier(.4,0,.2,1);
+  transition: max-height 0.25s cubic-bezier(.4, 0, .2, 1);
   background: #f9fafb;
   padding: 0 0;
 }
+
 .accordion-item.open .accordion-content {
   padding: 0.75rem 0 0.75rem 0.5rem;
   max-height: 300px;
 }
+
 .filter-checkbox-list {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .filter-checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+
 input[type="checkbox"] {
   accent-color: #6366f1;
   width: 1rem;
   height: 1rem;
 }
-.price-range-inputs {
-  display: flex;
-  gap: 0.5rem;
-}
-.price-range-inputs input {
-  width: 50%;
-  padding: 0.4rem 0.5rem;
+
+.precio-rango {
+  width: 25%;
+  margin-left: 0.5rem;
+  padding: 1vh;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
-  font-size: 1rem;
 }
+
 #in-stock {
   margin-right: 0.5rem;
 }
@@ -164,7 +232,8 @@ main {
 
 #products-container {
   margin-top: 15vh;
-  flex: 1; /* Ocupa el espacio restante */
+  flex: 1;
+  /* Ocupa el espacio restante */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
@@ -182,4 +251,93 @@ main {
     width: 100%;
     max-width: 100%;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827;
+  }
+  .product-card {
+    background: #1f2937;
+    border: 1px solid #374151;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  .product-card h2 {
+    color: #f9fafb;
+  }
+  .price {
+    color: #60a5fa;
+  }
+  .specs {
+    color: #d1d5db;
+  }
+  /* Dark mode: Sidebar (filtros) */
+  #sidebar {
+    background: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-header h2 {
+    color: #f3f4f6;
+  }
+
+  #close-sidebar {
+    color: #9ca3af;
+  }
+
+  .filter-section h3 {
+    color: #d1d5db;
+  }
+
+  .filter-search input {
+    background: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+  }
+
+  .filter-search input:focus {
+    border-color: #818cf8;
+  }
+
+  .accordion {
+    background: #111827;
+    border: 1px solid #374151;
+  }
+
+  .accordion-item + .accordion-item {
+    border-top-color: #4b5563;
+  }
+
+  .accordion-trigger {
+    color: #e5e7eb;
+  }
+
+  .accordion-trigger:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .accordion-content {
+    background: #111827;
+    color: #d1d5db;
+  }
+
+  .filter-checkbox-list .filter-checkbox {
+    color: #e5e7eb;
+  }
+
+  input[type="checkbox"] {
+    accent-color: #818cf8;
+  }
+
+  .price-range-inputs input {
+    background: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+  }
+
 }
