@@ -1,7 +1,9 @@
+import {API_URL} from "../common/globalVars.js";
+
 // Obtener productos
 async function loadProducts() {
     try {
-        const response = await fetch('http://localhost:5173/api/products');
+        const response = await fetch(`${API_URL}/products`);
         if (!response.ok) throw new Error('Error HTTP: ' + response.status);
 
         const products = await response.json();
@@ -15,7 +17,7 @@ async function loadProducts() {
         // ${product.images.map(img => `<img src="${img}" alt="${product.name}">`).join('')} => Coger todas las imágenes
         products.forEach(product => {
             const productHTML = `
-        <div class="product-card">
+        <div class="product-card" onclick="productClicked(${product.id})">
           <div class="gallery">
           <img src="${product.images[0]}" alt="${product.name}">
           </div>

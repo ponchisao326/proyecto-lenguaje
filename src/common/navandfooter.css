@@ -196,6 +196,12 @@ nav {
     color: #ffcc00;
 }
 
+.reference-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* Media Queries para Carbon Craft Labs */
 
 /* Dispositivos grandes (desktops, 1200px en adelante) */

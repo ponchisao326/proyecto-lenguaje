@@ -99,13 +99,17 @@
         <div class="footer-bottom">
             <a href="/"><img src="/CCLabs%20(recortada).svg" alt="Logo Carbon Craft Labs" /></a>
             &copy; 2024 Carbon Craft Labs. Todos los derechos reservados.
-            <a href="/contacto.html">Contacto</a>
+            <div class="reference-links">
+                <a href="/contacto.html">Contacto</a>
+                <a href="/shop.html">Tienda</a>
+            </div>
         </div>
     </footer>
 
     <script src="src/common/header.js"></script>
-    <script src="src/shop/productManager.js"></script>
-    <script src="src/shop/shop.js"></script>
+    <script type="module" src="src/shop/productManager.js"></script>
+    <script type="module" src="src/shop/shop.js"></script>
+    <script src="src/shop/onProductClicked.js"></script>
 </body>
 
 </html>
