@@ -101,5 +101,3 @@ function searchToggle() {
 // Carrito (TODO: Implementar)
 
 // Hamburguesa en movil (TODO: Implementar)
-
-// Buscar en base de datos (TODO: Implementar)
