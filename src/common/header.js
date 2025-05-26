@@ -71,12 +71,14 @@ function searchToggle() {
                 overlay.remove();
             };
 
-            searchBtn.onclick = () => {
-                console.log(input.value);
+            searchBtn.onclick = async () => {
                 if (input.value.length < 1) {
                     alert('Es necesario escribir algo para buscar');
                     return;
                 }
+
+                window.location.href = `/search?query=${encodeURIComponent(input.value)}`;
+
                 overlay.remove();
             };
 

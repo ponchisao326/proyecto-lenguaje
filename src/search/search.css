@@ -1,0 +1,64 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    margin-bottom: 30px;
+}
+
+/* Campo de entrada */
+.search-box {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Lista de resultados */
+.results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Items de resultados */
+.result-item {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Título del resultado */
+.result-title {
+    color: #1a0dab;
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    text-decoration: none;
+    display: block;
+}
+
+/* URL del resultado */
+.result-url {
+    color: #006621;
+    font-size: 14px;
+    margin: 0 0 8px 0;
+}
+
+/* Descripción */
+.result-description {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+}

@@ -93,8 +93,6 @@ function renderProduct(product) {
     <div class="product-info">
         <div class="brand">${product.brand_name}</div>
         <h1 class="product-title">${product.name}</h1>
-
-
         
         <div class="rating">
           <span class="stars">${starsHtml}</span>
