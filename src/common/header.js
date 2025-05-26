@@ -78,7 +78,6 @@ function searchToggle() {
                 }
 
                 window.location.href = `/search?query=${encodeURIComponent(input.value)}`;
-
                 overlay.remove();
             };
 
@@ -94,6 +93,14 @@ function searchToggle() {
             overlay.focus();
             overlay.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') overlay.remove();
+                if (e.key === 'Enter') {
+                    if (input.value.length < 1) {
+                        alert('Es necesario escribir algo para buscar');
+                        return;
+                    }
+                    window.location.href = `/search?query=${encodeURIComponent(input.value)}`;
+                    overlay.remove();
+                }
             });
         }
 }
