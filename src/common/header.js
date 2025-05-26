@@ -105,6 +105,5 @@ function searchToggle() {
         }
 }
 
-// Carrito (TODO: Implementar)
 
 // Hamburguesa en movil (TODO: Implementar)

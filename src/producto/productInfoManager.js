@@ -133,9 +133,98 @@ function renderProduct(product) {
             Compatible con: ${product.compatible_models}
         </div>
 
-        <button class="add-to-cart">Añadir al carrito</button>
+        <button class="add-to-cart" id="cart">Añadir al carrito</button>
+        <div id="toast"></div>
     </div>`
 
     product_container.innerHTML = productHTML;
     initCarousel();
+    // Modificar el <head> Title
+    document.title = `${product.name} - ${product.brand_name}`;
+
+    // Añadir event listener al botón "Añadir al carrito"
+    const cartButton = document.getElementById('cart');
+    if (cartButton) {
+        cartButton.addEventListener('click', () => {
+            // Validar stock
+            if (product.stock_count < 1) {
+                alert('Producto agotado');
+                return;
+            }
+
+            // Crear copia segura del producto con solo datos necesarios
+            const productToAdd = {
+                id: product.id,
+                name: product.name,
+                price: parseFloat(product.price),
+                quantity: 1,
+                image: product.images[0], // Guardamos solo la primera imagen
+                stock_count: product.stock_count,
+                max_quantity: product.stock_count // Límite de compra
+            };
+
+            // Obtener carrito actual
+            const cart = getCart();
+
+            // Buscar si ya existe el producto
+            const existingItem = cart.find(item => item.id === productToAdd.id);
+
+            if (existingItem) {
+                // Verificar stock máximo
+                if (existingItem.quantity >= existingItem.max_quantity) {
+                    alert(`No puedes agregar más del stock existente: ${existingItem.max_quantity}`);
+                    return;
+                }
+                existingItem.quantity += 1;
+            } else {
+                cart.push(productToAdd);
+            }
+
+            // Actualizar cookie
+            setCart(cart);
+
+            // Feedback al usuario
+            showToast(`✓ ${product.name} agregado al carrito`);
+        });
+    }
+}
+
+// Obtener carrito desde cookie (versión mejorada)
+function getCart() {
+    try {
+        const cookiePair = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('cart='));
+
+        if (!cookiePair) return [];
+
+        const cookieValue = cookiePair.split('=')[1];
+        return JSON.parse(decodeURIComponent(cookieValue)) || [];
+    } catch (error) {
+        console.error('Error parsing cart cookie:', error);
+        return [];
+    }
+}
+
+// Guardar carrito en cookie
+// Guardar carrito en cookie (versión corregida)
+function setCart(cart) {
+    const date = new Date();
+    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 días
+
+    // Eliminar saltos de línea en la cadena de la cookie
+    document.cookie = `cart=${encodeURIComponent(JSON.stringify(cart))}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+}
+
+// Reemplaza el alert por un toast moderno
+function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    document.getElementById('toast').appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
 }

@@ -61,11 +61,3 @@ async function initFilters() {
 }
 
 initFilters();
-
-// Acordeon
-document.querySelectorAll('.accordion-trigger').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const item = this.closest('.accordion-item');
-        item.classList.toggle('open');
-    });
-});

@@ -1,0 +1,249 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+main {
+    padding: 2rem;
+    margin-top: 12vh;
+}
+
+h1 {
+    width: 90%;
+    margin: 0 auto 3vh;
+}
+
+
+
+.alignment {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.product-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.products-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.cart-product {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    justify-content: space-between;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    min-width: 0;
+}
+
+.cart-product img {
+    width: 15vw;
+    height: 15vh;
+    object-fit: contain;
+    padding: 1vw;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 50%;
+    padding-right: 1vw;
+}
+
+.product-header, .product-details {
+    min-width: 0; /* Permite el encogimiento */
+}
+
+.product-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14vw;
+}
+
+.total-product {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 1rem;
+    padding: 1vw;
+}
+
+.total-product p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.remove-button {
+    display: flex;
+    color: red;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 0 .5vh 0;
+    margin: 0;
+    justify-content: center;
+    align-items: start;
+}
+
+.remove-button:hover {
+    color: darkred;
+}
+
+.remove-button svg {
+    width: 90%;
+    text-align: end;
+    padding: 0;
+    margin: 0;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 8vw;
+}
+
+.product-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-button {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    padding: 1vh 1vw 1vh 1vw;
+    cursor: pointer;
+}
+
+.quantity-button:hover {
+    background-color: #e0e0e0;
+}
+
+.product-quantity input {
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 0.8vh 0;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+}
+
+.clear-cart-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.clear-cart-button:hover {
+    background-color: #e60000;
+}
+
+.continue-shopping-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.continue-shopping-button:hover {
+    background-color: #45a049;
+}
+
+aside {
+    position: fixed;
+    top: 22.5vh;
+    right: 0;
+    width: 20%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.summary-price {
+    margin-left: auto; /* Empuja el precio a la derecha */
+}
+
+.divisory-line {
+    border-top: 1px solid #ddd;
+    margin: 12px 0;
+}
+
+.checkout-button {
+    margin-top: 16px;
+}
+
+.divisory-line {
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 2vh 0;
+}
+
+.checkout-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 2vh 3vw;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    main {
+        margin-bottom: 5vh;
+    }
+}
+
+@media (max-width: 425px) {
+    main {
+        margin-bottom: 3vh;
+    }
+}

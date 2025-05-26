@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="src/producto/product.css">
+    <title>Carbon Craft Labs | Cart</title>
+    <link rel="stylesheet" href="src/cart/cart.css">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="src/common/navandfooter.css">
-    <script src="src/producto/carrousel.js" defer></script>
 </head>
-<body>
+<style>
 
+</style>
+<body>
 <header>
     <nav id="navbar">
         <!-- Logo + 2 Categories (Ul) + search & cart-->
@@ -59,14 +59,26 @@
                 </button>
             </div>
             <div class="cart">
-                <button class="search-cart-button" aria-label="Cart" onclick="window.location.href = `/cart`">
+                <button class="search-cart-button" aria-label="Cart" onclick="cart()">
                     <img src="cart.svg" alt="Icono de Carrito" />
                 </button>
             </div>
         </div>
     </nav>
 </header>
-<main class="product-container" id="product-container"></main>
+
+<main>
+    <h1>Carrito</h1>
+
+    <div class="alignment">
+        <div class="products-container" id="products-container">
+            <div class="buttons-container">
+                <button class="clear-cart-button" onclick="clearCart()">Vaciar Carrito</button>
+                <button class="continue-shopping-button" onclick="window.location.href = `/shop`">Continua comprando</button>
+            </div>
+        </div>
+    </div>
+</main>
 
 <footer class="footer">
     <div class="footer-bottom">
@@ -78,8 +90,7 @@
         </div>
     </div>
 </footer>
-
-<script src="src/producto/productInfoManager.js"></script>
 <script src="src/common/header.js"></script>
+<script src="src/cart/productRender.js"></script>
 </body>
 </html>

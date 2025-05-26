@@ -67,5 +67,10 @@ document.addEventListener('input', (event) => {
     }
 });
 
-// Inicializa productos y filtros al cargar la página
-fetchAndStoreProducts();
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializa productos y filtros al cargar la página
+    fetchAndStoreProducts();
+    applyFilters();
+})
