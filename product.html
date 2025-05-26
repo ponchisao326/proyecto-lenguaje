@@ -4,194 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michelin - Pegatinas Racing</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .product-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 20px;
-            display: flex;
-            gap: 40px;
-        }
-
-        .gallery-section {
-            flex: 1;
-            min-width: 500px;
-        }
-
-        .main-image {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-
-        .thumbnails {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .thumbnail {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 1px solid #ddd;
-        }
-
-        .product-info {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .brand {
-            color: #666;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .product-title {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            color: #e00;
-            margin: 20px 0;
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .stock {
-            color: #0a0;
-            margin-bottom: 20px;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .features-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .spec-item {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .compatibility {
-            background: #e3f2fd;
-            padding: 10px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .add-to-cart {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .product-container {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .gallery-section {
-                min-width: unset;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="src/producto/product.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="src/common/navandfooter.css">
+    <script src="src/producto/carrousel.js" defer></script>
 </head>
 <body>
-<div class="product-container">
-    <div class="gallery-section">
-        <img src="/product_assets/product_10_1.webp" alt="Pegatinas Michelin" class="main-image">
-        <div class="thumbnails">
-            <img src="/product_assets/product_10_1.webp" class="thumbnail">
-            <img src="/product_assets/product_10_2.webp" class="thumbnail">
-            <img src="/product_assets/product_10_3.webp" class="thumbnail">
-            <img src="/product_assets/product_10_4.webp" class="thumbnail">
+
+<header>
+    <nav id="navbar">
+        <!-- Logo + 2 Categories (Ul) + search & cart-->
+        <div class="logo">
+            <a href="/">
+                <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
+            </a>
+        </div>
+        <div class="menu">
+            <ul class="categories">
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="#">DownPipes</a></li>
+                        <li class="category"><a href="#">Embragues</a></li>
+                        <li class="category"><a href="#">Frenos</a></li>
+                        <li class="category"><a href="#">Suspension</a></li>
+                        <li class="category"><a href="#">Escapes</a></li>
+                        <li class="category"><a href="#">Intercoolers</a></li>
+                        <li class="category"><a href="#">Radiadores</a></li>
+                    </ul>
+                </li>
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="#">Body Kits</a></li>
+                        <li class="category"><a href="#">Vinilos</a></li>
+                        <li class="category"><a href="#">Pegatinas</a></li>
+                        <li class="category"><a href="#">Alerones</a></li>
+                        <li class="category"><a href="#">Frontales</a></li>
+                        <li class="category"><a href="#">Difusores</a></li>
+                        <li class="category"><a href="#">Paragolpes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="search-cart">
+            <div class="search">
+                <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
+                    <img src="search.svg" alt="Icono de búsqueda" />
+                </button>
+            </div>
+            <div class="user">
+                <button id="user" class="search-cart-button" aria-label="Sign-in" onclick="userSignup()">
+                    <img src="user.svg" alt="Icono de Logeo" />
+                </button>
+            </div>
+            <div class="cart">
+                <button class="search-cart-button" aria-label="Cart" onclick="cart()">
+                    <img src="cart.svg" alt="Icono de Carrito" />
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="product-container" id="product-container"></main>
+
+<footer class="footer">
+    <div class="footer-bottom">
+        <a href="/"><img src="/CCLabs%20(recortada).svg" alt="Logo Carbon Craft Labs" /></a>
+        &copy; 2025 Carbon Craft Labs. Todos los derechos reservados.
+        <div class="reference-links">
+            <a href="/contacto.html">Contacto</a>
+            <a href="/shop.html">Tienda</a>
         </div>
     </div>
+</footer>
 
-    <div class="product-info">
-        <div class="brand">MICHELIN</div>
-        <h1 class="product-title">Pegatinas Racing Michelin - Juego 4pzs</h1>
-
-        <div class="rating">
-            ★★★★☆ 4.3 (127 reseñas)
-        </div>
-
-        <div class="price">29.99 €</div>
-
-        <div class="stock">En stock (50 unidades)</div>
-
-        <p class="description">Calcomanías resistentes a altas temperaturas</p>
-
-        <ul class="features-list">
-            <li>Resistentes a altas temperaturas</li>
-            <li>Fácil aplicación</li>
-            <li>Adhesivo duradero</li>
-            <li>Diseño oficial Michelin</li>
-        </ul>
-
-        <div class="specs-grid">
-            <div class="spec-item">
-                <strong>Cantidad</strong><br>
-                4 piezas
-            </div>
-            <div class="spec-item">
-                <strong>Material</strong><br>
-                Vinilo
-            </div>
-            <div class="spec-item">
-                <strong>Resistencia temperatura</strong><br>
-                Hasta 120°C
-            </div>
-            <div class="spec-item">
-                <strong>Tamaño</strong><br>
-                15x3 cm
-            </div>
-        </div>
-
-        <div class="compatibility">
-            Compatible con: Universal
-        </div>
-
-        <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-</div>
+<script src="src/producto/productInfoManager.js"></script>
 </body>
 </html>

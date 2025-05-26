@@ -7,8 +7,6 @@ async function getProduct(productId) {
 
     const [firstProduct, ...restProducts] = products;
 
-    let product;
-
     // Recorrer los productos y buscar el que coincida con el ID
     if (productId) {
         const product = products.find(p => p.id === productId);
@@ -20,5 +18,5 @@ async function getProduct(productId) {
 async function productClicked(productId) {
     // Obtener todos los datos del producto de la api
     const products = await getProduct(productId);
-    console.log('Producto seleccionado:', products);
+    window.location.href = '/product?id=' + productId;
 }
