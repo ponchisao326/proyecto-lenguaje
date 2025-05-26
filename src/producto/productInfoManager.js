@@ -24,12 +24,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const idParam = urlParams.get('id');
     if (!idParam) {
         console.warn('No product ID provided in URL');
+        alert('No se ha proporcionado un ID de producto');
+        window.location.href = '/shop'; // Redirigir al catálogo de productos
         return;
     }
 
     const productId = parseInt(idParam, 10);
     if (Number.isNaN(productId)) {
         console.error('Invalid product ID:', idParam);
+        alert('ID de producto inválido');
+        window.location.href = '/shop'; // Redirigir al catálogo de productos
         return;
     }
 
@@ -37,6 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const product = await getProduct(productId);
     if (!product) {
         console.error(`Product with ID ${productId} not found`);
+        alert(`Producto con ID ${productId} no encontrado`);
+        window.location.href = '/shop'; // Redirigir al catálogo de productos
         return;
     }
 
