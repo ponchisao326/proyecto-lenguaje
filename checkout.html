@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Carbon Craft Labs | Cart</title>
-    <link rel="stylesheet" href="src/cart/cart.css">
+    <title>Carbon Craft Labs | Checkout</title>
+    <link rel="stylesheet" href="src/checkout/checkout.css">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="src/common/navandfooter.css">
 </head>
-<style>
-
-</style>
 <body>
 <header>
     <nav id="navbar">
@@ -68,17 +65,62 @@
 </header>
 
 <main>
-    <h1>Carrito</h1>
+    <h2 class="title">Checkout</h2>
+    <form>
+        <div class="left">
+            <!-- Contact Information -->
+            <div class="section contact">
+                <h3>Contact Information</h3>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+            <!-- Shipping Address -->
+            <div class="section shipping">
+                <h3>Shipping Address</h3>
+                <div class="row">
+                    <div class="col">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="John">
+                    </div>
+                    <div class="col">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Doe">
+                    </div>
+                </div>
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="123 Main St">
+                <div class="row">
+                    <div class="col">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="City">
+                    </div>
+                    <div class="col">
+                        <label for="state">State</label>
+                        <select id="state">
+                            <option selected disabled>Select state</option>
+                            <option>CA</option>
+                            <option>NY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="zip">ZIP Code</label>
+                        <input type="text" id="zip" placeholder="12345">
+                    </div>
+                    <div class="col">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" placeholder="(555) 123-4567">
+                    </div>
+                </div>
+            </div>
 
-    <div class="alignment">
-        <div class="products-container" id="products-container">
-            <!-- Products will be rendered here -->
         </div>
-    </div>
-    <div class="buttons-container">
-        <button class="clear-cart-button" onclick="clearCart()">Vaciar Carrito</button>
-        <button class="continue-shopping-button" onclick="window.location.href = `/shop`">Continua comprando</button>
-    </div>
+        <!-- Order Summary -->
+        <div class="right order-summary" id="order-summary">
+
+        </div>
+    </form>
 </main>
 
 <footer class="footer">
@@ -91,7 +133,8 @@
         </div>
     </div>
 </footer>
+
+<script type="module" src="src/checkout/checkout.js"></script>
 <script src="src/common/header.js"></script>
-<script type="module" src="src/cart/productRender.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 const productsContainer = document.getElementById("products-container");
 
-function getCart() {
+export function getCart() {
     try {
         const cookiePair = document.cookie
             .split('; ')
