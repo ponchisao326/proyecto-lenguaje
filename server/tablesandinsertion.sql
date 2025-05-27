@@ -20,7 +20,7 @@ CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    original_price DECIMAL(10,2)c,
+    original_price DECIMAL(10,2),
     rating DECIMAL(3,1),
     reviews INT,
     brand_id INT NOT NULL,
@@ -54,6 +54,22 @@ CREATE TABLE product_compatibility (
 CREATE TABLE product_images (
     product_id INT NOT NULL,
     image_url VARCHAR(512) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    total DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE order_items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
@@ -120,22 +136,7 @@ INSERT INTO products (id, name, price, original_price, rating, reviews, brand_id
 (12, 'Splitter Delantero APR - Audi TT RS', 399.99, NULL, 4.6, 23, 5, 12, TRUE, 8, 'Splitter en polímero reforzado con fibra de vidrio'),
 (13, 'Difusor Trasero Maxton - BMW M4', 549.99, 649.99, 4.5, 19, 13, 13, TRUE, 3, 'Difusor con canales direccionales y salidas para escape'),
 (14, 'Paragolpes Roush - Ford F-150', 1299.99, NULL, 4.8, 12, 20, 14, TRUE, 2, 'Paragolpes deportivo con protección skid plate'),
-(15, 'Downpipe HJS - Porsche 911', 899.99, 999.99, 4.9, 37, 17, 1, TRUE, 5, 'Downpipe con catalizador 300 células homologado'),
-(16, 'Volante Motor Forge - VW EA888', 349.99, NULL, 4.6, 44, 17, 2, TRUE, 10, 'Volante bimasa para altos niveles de par'),
-(17, 'Pastillas Frenos StopTech - Track Pack', 199.99, 249.99, 4.7, 68, 18, 3, TRUE, 15, 'Pastillas compuesto race para alta temperatura'),
-(18, 'Barras Whiteline - Subaru BRZ', 299.99, NULL, 4.5, 27, 19, 4, TRUE, 7, 'Kit completo barras estabilizadoras ajustables'),
-(19, 'Tubo Escape Titanio HKS - Nissan GT-R', 2999.99, 3299.99, 4.9, 14, 6, 5, TRUE, 2, 'Sistema completo en titanio con válvula controlable'),
-(20, 'Intercooler Wagner Tuning - BMW N54', 649.99, NULL, 4.7, 31, 17, 6, TRUE, 6, 'Núcleo de alta densidad con tanques reforzados'),
-(21, 'Kit Radiador Mishimoto - Mazda MX-5', 389.99, 449.99, 4.6, 19, 4, 7, TRUE, 9, 'Kit completo con mangueras silicona y abrazaderas'),
-(22, 'Vinilo Avery Gloss Blue - Rollo 15m', 429.99, NULL, 4.8, 56, 12, 9, TRUE, 11, 'Vinilo brillo automotriz con tecnología air-release'),
-(23, 'Pegatinas Rally - Juego 6pzs', 39.99, 49.99, 4.4, 83, 16, 10, TRUE, 22, 'Calcomanías reflectantes para competición'),
-(24, 'Alerón GT APR - Porsche 718', 1199.99, NULL, 4.7, 9, 5, 11, TRUE, 3, 'Alerón ajustable con soportes de aluminio aeronáutico'),
-(25, 'Protector Paragolpes WeatherTech - Pickups', 149.99, 199.99, 4.3, 47, 15, 12, TRUE, 18, 'Protector de goma termoformado para paragolpes'),
-(26, 'Kit Body Kit Liberty Walk - Nissan 370Z', 5499.99, NULL, 4.9, 5, 13, 8, TRUE, 1, 'Kit widebody completo con arcos extendidos'),
-(27, 'Discos Frenos Perforados EBC - Track Use', 299.99, 349.99, 4.6, 62, 18, 3, TRUE, 14, 'Discos slotted para mejor refrigeración en circuito'),
-(28, 'Coilovers Eibach Pro-Street-S - BMW M2', 1799.99, NULL, 4.7, 21, 2, 4, TRUE, 4, 'Suspensión deportiva con tecnología Pro-Damper'),
-(29, 'Sistema Escape Akrapovič - BMW M4', 4299.99, 4599.99, 5.0, 8, 6, 5, TRUE, 2, 'Sistema completo en titanio con terminales carbono'),
-(30, 'Intercooler CSF - Mercedes AMG A45', 729.99, 799.99, 4.8, 17, 10, 6, TRUE, 5, 'Diseño race con núcleo de alta eficiencia');
+(15, 'Downpipe HJS - Porsche 911', 899.99, 999.99, 4.9, 37, 17, 1, TRUE, 5, 'Downpipe con catalizador 300 células homologado');
 
 -- PRODUCTO 1: Downpipe Deportivo APR - VW Golf R
 INSERT INTO product_features VALUES
@@ -351,222 +352,6 @@ INSERT INTO product_specifications VALUES
 INSERT INTO product_compatibility VALUES
 (15, 'Porsche 911 991 Carrera');
 
--- PRODUCTO 16: Volante Motor Forge - VW EA888
-INSERT INTO product_features VALUES
-(16, 'Bimasa'),
-(16, 'Alto par soportado'),
-(16, 'Reducción de peso'),
-(16, 'Diseño reforzado');
-INSERT INTO product_specifications VALUES
-(16, 'Tipo', 'Bimasa'),
-(16, 'Material', 'Acero forjado'),
-(16, 'Peso', '7.2 kg'),
-(16, 'Torque máximo', '650 Nm');
-INSERT INTO product_compatibility VALUES
-(16, 'VW Golf GTI MK7'),
-(16, 'Audi S3 8V');
-
--- PRODUCTO 17: Pastillas Frenos StopTech - Track Pack
-INSERT INTO product_features VALUES
-(17, 'Compuesto race'),
-(17, 'Alta temperatura'),
-(17, 'Bajo desgaste'),
-(17, 'Frenada consistente');
-INSERT INTO product_specifications VALUES
-(17, 'Material', 'Compuesto cerámico'),
-(17, 'Temperatura máxima', '800°C'),
-(17, 'Aplicación', 'Track day'),
-(17, 'Cantidad', '4 pastillas');
-INSERT INTO product_compatibility VALUES
-(17, 'BMW M3 E46'),
-(17, 'Nissan 350Z');
-
--- PRODUCTO 18: Barras Whiteline - Subaru BRZ
-INSERT INTO product_features VALUES
-(18, 'Ajustables'),
-(18, 'Incluye herrajes'),
-(18, 'Mejora estabilidad'),
-(18, 'Acero de alta resistencia');
-INSERT INTO product_specifications VALUES
-(18, 'Material', 'Acero'),
-(18, 'Diámetro', '22 mm'),
-(18, 'Ajustable', 'Sí'),
-(18, 'Incluye', 'Herrajes');
-INSERT INTO product_compatibility VALUES
-(18, 'Subaru BRZ'),
-(18, 'Toyota GT86');
-
--- PRODUCTO 19: Tubo Escape Titanio HKS - Nissan GT-R
-INSERT INTO product_features VALUES
-(19, 'Titanio completo'),
-(19, 'Válvula controlable'),
-(19, 'Peso ultraligero'),
-(19, 'Sonido deportivo');
-INSERT INTO product_specifications VALUES
-(19, 'Material', 'Titanio'),
-(19, 'Diámetro', '90 mm'),
-(19, 'Peso', '8 kg'),
-(19, 'Tipo', 'Cat-back');
-INSERT INTO product_compatibility VALUES
-(19, 'Nissan GT-R R35');
-
--- PRODUCTO 20: Intercooler Wagner Tuning - BMW N54
-INSERT INTO product_features VALUES
-(20, 'Núcleo de alta densidad'),
-(20, 'Tanques reforzados'),
-(20, 'Mejora enfriamiento'),
-(20, 'Montaje directo');
-INSERT INTO product_specifications VALUES
-(20, 'Material', 'Aluminio'),
-(20, 'Dimensiones', '520x210x150 mm'),
-(20, 'Capacidad', 'Hasta 700 HP'),
-(20, 'Peso', '7.5 kg');
-INSERT INTO product_compatibility VALUES
-(20, 'BMW 335i E90/E92 N54');
-
--- PRODUCTO 21: Kit Radiador Mishimoto - Mazda MX-5
-INSERT INTO product_features VALUES
-(21, 'Incluye mangueras de silicona'),
-(21, 'Aluminio pulido'),
-(21, 'Mejora refrigeración'),
-(21, 'Montaje directo');
-INSERT INTO product_specifications VALUES
-(21, 'Material', 'Aluminio'),
-(21, 'Incluye', 'Mangueras y abrazaderas'),
-(21, 'Peso', '5.2 kg'),
-(21, 'Dimensiones', '675x438x68 mm');
-INSERT INTO product_compatibility VALUES
-(21, 'Mazda MX-5 NA/NB');
-
--- PRODUCTO 22: Vinilo Avery Gloss Blue - Rollo 15m
-INSERT INTO product_features VALUES
-(22, 'Tecnología air-release'),
-(22, 'Acabado brillo'),
-(22, 'Fácil de instalar'),
-(22, 'Protección UV');
-INSERT INTO product_specifications VALUES
-(22, 'Color', 'Azul brillo'),
-(22, 'Dimensiones', '1.52m x 15m'),
-(22, 'Espesor', '0.13 mm'),
-(22, 'Resistencia UV', 'Sí');
-INSERT INTO product_compatibility VALUES
-(22, 'Universal');
-
--- PRODUCTO 23: Pegatinas Rally - Juego 6pzs
-INSERT INTO product_features VALUES
-(23, 'Reflectantes'),
-(23, 'Fácil aplicación'),
-(23, 'Resistentes al agua'),
-(23, 'Diseño competición');
-INSERT INTO product_specifications VALUES
-(23, 'Cantidad', '6 piezas'),
-(23, 'Material', 'Vinilo reflectante'),
-(23, 'Tamaño', '12x4 cm'),
-(23, 'Resistencia agua', 'Sí');
-INSERT INTO product_compatibility VALUES
-(23, 'Universal');
-
--- PRODUCTO 24: Alerón GT APR - Porsche 718
-INSERT INTO product_features VALUES
-(24, 'Ajustable'),
-(24, 'Soportes aluminio aeronáutico'),
-(24, 'Fibra de carbono'),
-(24, 'Montaje directo');
-INSERT INTO product_specifications VALUES
-(24, 'Material', 'Fibra de carbono'),
-(24, 'Peso', '3.2 kg'),
-(24, 'Ajustable', 'Sí'),
-(24, 'Soportes', 'Aluminio aeronáutico');
-INSERT INTO product_compatibility VALUES
-(24, 'Porsche 718 Cayman/Boxster');
-
--- PRODUCTO 25: Protector Paragolpes WeatherTech - Pickups
-INSERT INTO product_features VALUES
-(25, 'Goma termoformada'),
-(25, 'Protección UV'),
-(25, 'Fácil instalación'),
-(25, 'Diseño antideslizante');
-INSERT INTO product_specifications VALUES
-(25, 'Material', 'Goma termoformada'),
-(25, 'Color', 'Negro'),
-(25, 'Dimensiones', '120x15 cm'),
-(25, 'Resistencia UV', 'Sí');
-INSERT INTO product_compatibility VALUES
-(25, 'Ford F-150'),
-(25, 'Chevrolet Silverado'),
-(25, 'RAM 1500');
-
--- PRODUCTO 26: Kit Body Kit Liberty Walk - Nissan 370Z
-INSERT INTO product_features VALUES
-(26, 'Widebody completo'),
-(26, 'Arcos extendidos'),
-(26, 'Material FRP'),
-(26, 'Incluye herrajes');
-INSERT INTO product_specifications VALUES
-(26, 'Material', 'Fibra de vidrio (FRP)'),
-(26, 'Incluye', 'Arcos, faldones, difusor'),
-(26, 'Peso', '18 kg'),
-(26, 'Montaje', 'Atornillado');
-INSERT INTO product_compatibility VALUES
-(26, 'Nissan 370Z');
-
--- PRODUCTO 27: Discos Frenos Perforados EBC - Track Use
-INSERT INTO product_features VALUES
-(27, 'Slotted y perforados'),
-(27, 'Mejor refrigeración'),
-(27, 'Acero de alta calidad'),
-(27, 'Diseño para circuito');
-INSERT INTO product_specifications VALUES
-(27, 'Material', 'Acero'),
-(27, 'Diámetro', '330 mm'),
-(27, 'Tipo', 'Slotted y perforado'),
-(27, 'Peso', '7 kg');
-INSERT INTO product_compatibility VALUES
-(27, 'BMW M3 E46'),
-(27, 'Nissan 350Z');
-
--- PRODUCTO 28: Coilovers Eibach Pro-Street-S - BMW M2
-INSERT INTO product_features VALUES
-(28, 'Altura ajustable'),
-(28, 'Tecnología Pro-Damper'),
-(28, 'Acero inoxidable'),
-(28, 'Uso deportivo');
-INSERT INTO product_specifications VALUES
-(28, 'Material', 'Acero inoxidable'),
-(28, 'Altura ajustable', 'Sí'),
-(28, 'Tipo', 'Coilover'),
-(28, 'Peso', '12 kg');
-INSERT INTO product_compatibility VALUES
-(28, 'BMW M2 F87');
-
--- PRODUCTO 29: Sistema Escape Akrapovič - BMW M4
-INSERT INTO product_features VALUES
-(29, 'Titanio completo'),
-(29, 'Terminales de carbono'),
-(29, 'Peso ultraligero'),
-(29, 'Sonido deportivo');
-INSERT INTO product_specifications VALUES
-(29, 'Material', 'Titanio'),
-(29, 'Tipo', 'Cat-back'),
-(29, 'Peso', '9 kg'),
-(29, 'Terminales', 'Fibra de carbono');
-INSERT INTO product_compatibility VALUES
-(29, 'BMW M4 F82');
-
--- PRODUCTO 30: Intercooler CSF - Mercedes AMG A45
-INSERT INTO product_features VALUES
-(30, 'Núcleo de alta eficiencia'),
-(30, 'Aluminio de alta calidad'),
-(30, 'Montaje directo'),
-(30, 'Mejora enfriamiento');
-INSERT INTO product_specifications VALUES
-(30, 'Material', 'Aluminio'),
-(30, 'Dimensiones', '600x180x100 mm'),
-(30, 'Peso', '6.5 kg'),
-(30, 'Capacidad', 'Hasta 550 HP');
-INSERT INTO product_compatibility VALUES
-(30, 'Mercedes AMG A45 W176');
-
 INSERT INTO product_images (product_id, image_url) VALUES
 (1, '/product_assets/product_1_1.webp'),
 (1, '/product_assets/product_1_2.webp'),
@@ -627,64 +412,4 @@ INSERT INTO product_images (product_id, image_url) VALUES
 (15, '/product_assets/product_15_1.webp'),
 (15, '/product_assets/product_15_2.webp'),
 (15, '/product_assets/product_15_3.webp'),
-(15, '/product_assets/product_15_4.webp'),
-(16, '/product_assets/product_16_1.webp'),
-(16, '/product_assets/product_16_2.webp'),
-(16, '/product_assets/product_16_3.webp'),
-(16, '/product_assets/product_16_4.webp'),
-(17, '/product_assets/product_17_1.webp'),
-(17, '/product_assets/product_17_2.webp'),
-(17, '/product_assets/product_17_3.webp'),
-(17, '/product_assets/product_17_4.webp'),
-(18, '/product_assets/product_18_1.webp'),
-(18, '/product_assets/product_18_2.webp'),
-(18, '/product_assets/product_18_3.webp'),
-(18, '/product_assets/product_18_4.webp'),
-(19, '/product_assets/product_19_1.webp'),
-(19, '/product_assets/product_19_2.webp'),
-(19, '/product_assets/product_19_3.webp'),
-(19, '/product_assets/product_19_4.webp'),
-(20, '/product_assets/product_20_1.webp'),
-(20, '/product_assets/product_20_2.webp'),
-(20, '/product_assets/product_20_3.webp'),
-(20, '/product_assets/product_20_4.webp'),
-(21, '/product_assets/product_21_1.webp'),
-(21, '/product_assets/product_21_2.webp'),
-(21, '/product_assets/product_21_3.webp'),
-(21, '/product_assets/product_21_4.webp'),
-(22, '/product_assets/product_22_1.webp'),
-(22, '/product_assets/product_22_2.webp'),
-(22, '/product_assets/product_22_3.webp'),
-(22, '/product_assets/product_22_4.webp'),
-(23, '/product_assets/product_23_1.webp'),
-(23, '/product_assets/product_23_2.webp'),
-(23, '/product_assets/product_23_3.webp'),
-(23, '/product_assets/product_23_4.webp'),
-(24, '/product_assets/product_24_1.webp'),
-(24, '/product_assets/product_24_2.webp'),
-(24, '/product_assets/product_24_3.webp'),
-(24, '/product_assets/product_24_4.webp'),
-(25, '/product_assets/product_25_1.webp'),
-(25, '/product_assets/product_25_2.webp'),
-(25, '/product_assets/product_25_3.webp'),
-(25, '/product_assets/product_25_4.webp'),
-(26, '/product_assets/product_26_1.webp'),
-(26, '/product_assets/product_26_2.webp'),
-(26, '/product_assets/product_26_3.webp'),
-(26, '/product_assets/product_26_4.webp'),
-(27, '/product_assets/product_27_1.webp'),
-(27, '/product_assets/product_27_2.webp'),
-(27, '/product_assets/product_27_3.webp'),
-(27, '/product_assets/product_27_4.webp'),
-(28, '/product_assets/product_28_1.webp'),
-(28, '/product_assets/product_28_2.webp'),
-(28, '/product_assets/product_28_3.webp'),
-(28, '/product_assets/product_28_4.webp'),
-(29, '/product_assets/product_29_1.webp'),
-(29, '/product_assets/product_29_2.webp'),
-(29, '/product_assets/product_29_3.webp'),
-(29, '/product_assets/product_29_4.webp'),
-(30, '/product_assets/product_30_1.webp'),
-(30, '/product_assets/product_30_2.webp'),
-(30, '/product_assets/product_30_3.webp'),
-(30, '/product_assets/product_30_4.webp');
+(15, '/product_assets/product_15_4.webp');

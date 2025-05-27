@@ -54,9 +54,9 @@ startAnimation();
 
 // onClick para los divs
 divDerecha.addEventListener('click', () => {
-    window.location.href = '/detailing';
+    window.location.href = '/shop?category=body%20kits&category=vinilos&category=pegatinas&category=alerones&category=frontales&category=difusores&category=paragolpes';
 });
 
 divIzquierda.addEventListener('click', () => {
-    window.location.href = '/performance';
+    window.location.href = '/shop?category=downpipes&category=embrague&category=frenos&category=suspension&category=escapes&category=intercooler&category=radiadores';
 });

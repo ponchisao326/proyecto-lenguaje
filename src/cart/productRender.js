@@ -1,6 +1,6 @@
 const productsContainer = document.getElementById("products-container");
 
-export function getCart() {
+function getCart() {
     try {
         const cookiePair = document.cookie
             .split('; ')
@@ -21,6 +21,9 @@ function setCart(cart) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname !== '/cart') {
+        return; // No hacer nada si no estamos en la página del carrito
+    }
     const cart = getCart();
 
     let totalSet = new Set();
@@ -79,6 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateCartDisplay() {
+    if (window.location.pathname !== '/cart') {
+        return; // No hacer nada si no estamos en la página del carrito
+    }
     // Limpia y vuelve a renderizar los productos y el resumen
     productsContainer.innerHTML = '';
     const cart = getCart();
@@ -178,3 +184,5 @@ function clearCart() {
     document.cookie = "cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.reload();
 }
+
+export { getCart, setCart, clearCart, updateCartDisplay };

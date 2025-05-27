@@ -9,22 +9,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5173;
 
-// Configurar CORS
+// Middlewares
 app.use(cors());
+app.use(express.json());
 
-// Configurar conexión MySQL
+// Configuración de MySQL
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    port: process.env.DB_PORT || 3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-// Middleware de restricción
+// Middleware de seguridad
 const RESTRICTED_FILES = process.env.RESTRICTED_FILES?.split(',') || [];
 app.use((req, res, next) => {
     const requestedFile = req.originalUrl.split('/').pop();
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// 👇🏼 Aquí agregamos el endpoint de productos
+// Endpoint de productos
 app.get('/api/products', async (req, res) => {
     try {
         const [products] = await pool.query(`
@@ -57,7 +58,7 @@ app.get('/api/products', async (req, res) => {
                      LEFT JOIN product_images i ON p.id = i.product_id
             GROUP BY p.id
             ORDER BY p.id
-    `);
+        `);
 
         const parsedProducts = products.map(product => ({
             ...product,
@@ -71,8 +72,134 @@ app.get('/api/products', async (req, res) => {
 
         res.json(parsedProducts);
     } catch (error) {
-        console.error(error);
+        console.error('Error en GET /api/products:', error);
         res.status(500).json({ error: 'Error al obtener productos' });
+    }
+});
+
+// Endpoint para procesar órdenes
+app.post('/api/orders', async (req, res) => {
+    let connection;
+    try {
+        const cartItems = req.body;
+
+        // Validación mejorada
+        if (!Array.isArray(cartItems)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Formato de carrito inválido'
+            });
+        }
+
+        if (cartItems.length === 0) {
+            return res.status(400).json({
+                success: false,
+                error: 'El carrito está vacío'
+            });
+        }
+
+        connection = await pool.getConnection();
+        await connection.beginTransaction();
+
+        try {
+            let total = 0;
+            const stockValidations = [];
+
+            // Validar stock y calcular total
+            for (const item of cartItems) {
+                if (!item.id || !item.price || !item.quantity) {
+                    throw new Error('Datos del producto incompletos');
+                }
+
+                const [product] = await connection.query(
+                    'SELECT name, stock_count FROM products WHERE id = ?',
+                    [item.id]
+                );
+
+                if (!product.length) {
+                    throw new Error(`Producto no encontrado: ID ${item.id}`);
+                }
+
+                if (product[0].stock_count < item.quantity) {
+                    throw new Error(`Stock insuficiente para: ${product[0].name}`);
+                }
+
+                total += item.price * item.quantity;
+                stockValidations.push({
+                    id: item.id,
+                    quantity: item.quantity
+                });
+            }
+
+            // Crear orden
+            const [orderResult] = await connection.query(
+                'INSERT INTO orders (total) VALUES (?)',
+                [total]
+            );
+            const orderId = orderResult.insertId;
+
+            // Insertar items y actualizar stock
+            for (const item of cartItems) {
+                await connection.query(
+                    'INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)',
+                    [orderId, item.id, item.quantity, item.price]
+                );
+
+                await connection.query(
+                    'UPDATE products SET stock_count = stock_count - ? WHERE id = ?',
+                    [item.quantity, item.id]
+                );
+            }
+
+            await connection.commit();
+
+            res.status(201).json({
+                success: true,
+                orderId,
+                total: total + 5.99,
+                message: 'Orden procesada exitosamente'
+            });
+
+        } catch (error) {
+            await connection.rollback();
+            console.error('Error en transacción:', error);
+            res.status(400).json({
+                success: false,
+                error: error.message
+            });
+        } finally {
+            if (connection) connection.release();
+        }
+    } catch (error) {
+        console.error('Error general:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Error interno del servidor'
+        });
+    }
+});
+
+// Agrega este endpoint al servidor
+app.get('/api/orders', async (req, res) => {
+    try {
+        const [orders] = await pool.query(`
+            SELECT o.*, 
+                GROUP_CONCAT(DISTINCT oi.product_id) AS product_ids,
+                GROUP_CONCAT(DISTINCT oi.quantity) AS quantities
+            FROM orders o
+            LEFT JOIN order_items oi ON o.id = oi.order_id
+            GROUP BY o.id
+            ORDER BY o.created_at DESC
+        `);
+
+        res.json(orders.map(order => ({
+            ...order,
+            product_ids: order.product_ids?.split(',').map(Number) || [],
+            quantities: order.quantities?.split(',').map(Number) || []
+        })));
+    } catch (error) {
+        console.error('Error en GET /api/orders:', error);
+        res.status(500).json({ error: 'Error al obtener órdenes' });
     }
 });
 
@@ -83,10 +210,8 @@ app.get('/api/products', async (req, res) => {
         appType: 'spa'
     });
 
-    // Usar el middleware de Vite
     app.use(vite.middlewares);
 
-    // Manejar todas las rutas
     app.use(async (req, res) => {
         try {
             const html = await vite.transformIndexHtml(
@@ -96,7 +221,7 @@ app.get('/api/products', async (req, res) => {
             res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
         } catch (e) {
             vite.ssrFixStacktrace(e);
-            console.error(e);
+            console.error('Error en Vite middleware:', e);
             res.status(500).end(e.message);
         }
     });
