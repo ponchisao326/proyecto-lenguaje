@@ -59,6 +59,7 @@ CREATE TABLE product_images (
 
 CREATE TABLE orders (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
     total DECIMAL(10,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

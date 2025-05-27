@@ -81,9 +81,16 @@ app.get('/api/products', async (req, res) => {
 app.post('/api/orders', async (req, res) => {
     let connection;
     try {
-        const cartItems = req.body;
+        const { username, items: cartItems } = req.body; // Cambio aquí para obtener username
 
         // Validación mejorada
+        if (!username || !username.trim()) {
+            return res.status(400).json({
+                success: false,
+                error: 'Nombre de usuario requerido'
+            });
+        }
+
         if (!Array.isArray(cartItems)) {
             return res.status(400).json({
                 success: false,
@@ -131,10 +138,10 @@ app.post('/api/orders', async (req, res) => {
                 });
             }
 
-            // Crear orden
+            // Crear orden con username
             const [orderResult] = await connection.query(
-                'INSERT INTO orders (total) VALUES (?)',
-                [total]
+                'INSERT INTO orders (username, total) VALUES (?, ?)', // Query modificada
+                [username.trim(), total] // Valores actualizados
             );
             const orderId = orderResult.insertId;
 
@@ -176,30 +183,6 @@ app.post('/api/orders', async (req, res) => {
             success: false,
             error: 'Error interno del servidor'
         });
-    }
-});
-
-// Agrega este endpoint al servidor
-app.get('/api/orders', async (req, res) => {
-    try {
-        const [orders] = await pool.query(`
-            SELECT o.*, 
-                GROUP_CONCAT(DISTINCT oi.product_id) AS product_ids,
-                GROUP_CONCAT(DISTINCT oi.quantity) AS quantities
-            FROM orders o
-            LEFT JOIN order_items oi ON o.id = oi.order_id
-            GROUP BY o.id
-            ORDER BY o.created_at DESC
-        `);
-
-        res.json(orders.map(order => ({
-            ...order,
-            product_ids: order.product_ids?.split(',').map(Number) || [],
-            quantities: order.quantities?.split(',').map(Number) || []
-        })));
-    } catch (error) {
-        console.error('Error en GET /api/orders:', error);
-        res.status(500).json({ error: 'Error al obtener órdenes' });
     }
 });
 

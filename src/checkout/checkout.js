@@ -1,6 +1,7 @@
 import { getCart, clearCart } from "../cart/productRender.js";
+import { clerk } from "../clerk.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+function loadContent() {
     const cart = getCart();
     if (cart.length === 0) {
         document.getElementById('order-summary').innerHTML = '<p>Your cart is empty.</p>';
@@ -9,40 +10,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCartSummary(cart);
     setupCheckoutButton(cart);
-})
+}
 
 function renderCartSummary(cart) {
     const orderSummary = document.getElementById('order-summary');
 
-    let summarySet = new Set();
-    let totalAmount = 0;
-    cart.forEach(product => {
-        const item = `<div class="summary-item"><span>${product.name} X${product.quantity}</span><span>${(product.price * product.quantity).toFixed(2)}€</span></div>`
-        summarySet.add(item);
+    // Limpiar contenido existente
+    orderSummary.innerHTML = '';
 
+    let summaryHTML = '';
+    let totalAmount = 0;
+
+    cart.forEach(product => {
+        summaryHTML += `
+            <div class="summary-item">
+                <span>${product.name} X${product.quantity}</span>
+                <span>${(product.price * product.quantity).toFixed(2)}€</span>
+            </div>
+        `;
         totalAmount += product.price * product.quantity;
-    })
+    });
+
     const cartResumeHTML = `
         <h2>Order Summary</h2>
-        ${
-            Array.from(summarySet).join('')
-    }
+        ${summaryHTML}
         <div class="divisory-line"></div>
         <div class="summary-item"><span>Subtotal</span><span>${totalAmount.toFixed(2)} €</span></div>
         <div class="summary-item"><span>Shipping</span><span>5.99 €</span></div>
         <div class="summary-item"><span>Tax</span><span>FREE</span></div>
         <div class="summary-item total"><span>Total</span><span>${(totalAmount + 5.99).toFixed(2)} €</span></div>
-        <button type="button" class="btn" id="complete-order"">Complete Order - ${(totalAmount + 5.99).toFixed(2)} €</button>
+        <button type="button" class="btn" id="complete-order">Complete Order - ${(totalAmount + 5.99).toFixed(2)} €</button>
         <p class="terms">By completing your order, you agree to our Terms of Service and Privacy Policy.</p>
-    `
+    `;
 
-    orderSummary.insertAdjacentHTML('afterbegin', cartResumeHTML);
+    orderSummary.innerHTML = cartResumeHTML;
 }
 
 function setupCheckoutButton(cart) {
     const checkoutButton = document.getElementById('complete-order');
+    const username = clerk.user ? clerk.user.firstName : 'Guest';
 
     checkoutButton.addEventListener('click', async () => {
+
+        if (!username) {
+            showErrorMessage('Por favor ingresa tu nombre de usuario');
+            return;
+        }
+
         checkoutButton.disabled = true;
         checkoutButton.textContent = 'Processing...';
 
@@ -52,7 +66,10 @@ function setupCheckoutButton(cart) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(cart)
+                body: JSON.stringify({
+                    username: username,
+                    items: cart
+                })
             });
 
             const result = await response.json();
@@ -71,6 +88,7 @@ function setupCheckoutButton(cart) {
         }
     });
 }
+
 
 function cartTotal(cart) {
     return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 5.99;
@@ -95,3 +113,5 @@ function showErrorMessage(message) {
     `;
     document.getElementById('after').insertAdjacentHTML('afterend', errorHTML);
 }
+
+loadContent();
