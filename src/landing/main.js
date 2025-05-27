@@ -9,6 +9,7 @@ const divIzquierda = document.getElementById('divIzquierda');
 const performance = document.getElementById('performance');
 const detailing = document.getElementById('detailing');
 
+
 document.addEventListener('mousemove', (e) => {
     const rect = main.getBoundingClientRect();
     const dentroDeMain =

@@ -214,6 +214,11 @@ nav {
     gap: 1rem;
 }
 
+.logged-in {
+    background-color: transparent;
+    border: none;
+}
+
 /* Media Queries para Carbon Craft Labs */
 
 /* Dispositivos grandes (desktops, 1200px en adelante) */

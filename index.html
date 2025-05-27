@@ -57,8 +57,8 @@
             </button>
           </div>
           <div class="user">
-            <button id="user" class="search-cart-button" aria-label="Sign-in" onclick="userSignup()">
-              <img src="user.svg" alt="Icono de Logeo" />
+            <button id="user-button" class="search-cart-button" aria-label="Sign-in">
+              <img id='user-svg' src="user.svg" alt="Icono de Logeo" />
             </button>
           </div>
           <div class="cart">
@@ -69,7 +69,6 @@
         </div>
       </nav>
     </header>
-
     <!-- Titulo en medio dividida la pantalla a la mitad por una linea, dependiendo de donde pongas el cursor aparece una imagen u otra como main -->
     <main id="main"> <!-- Background que cambia dependiendo del cursor (ThreeJS) -->
       <div class="box" id="box">
@@ -157,5 +156,6 @@
     <script type="module" src="src/landing/globalVars.js"></script>
     <script src="src/common/onContentLoad.js"></script>
     <script src="src/landing/brandSlider.js"></script>
+    <script type="module" src="src/clerk.js"></script>
   </body>
 </html>
