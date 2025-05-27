@@ -17,7 +17,6 @@ async function getProduct(productId) {
     return product;
 }
 
-// carrousel.js
 document.addEventListener('DOMContentLoaded', async () => {
     // 1) Get the “id” query-param
     const urlParams = new URLSearchParams(window.location.search);
@@ -207,7 +206,6 @@ function getCart() {
 }
 
 // Guardar carrito en cookie
-// Guardar carrito en cookie (versión corregida)
 function setCart(cart) {
     const date = new Date();
     date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 días

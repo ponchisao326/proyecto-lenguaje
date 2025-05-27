@@ -67,10 +67,38 @@ document.addEventListener('input', (event) => {
     }
 });
 
+function logCheckboxes() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParams = urlParams.getAll('category');
+    const brandParams = urlParams.getAll('brand');
+    if (categoryParams === 0 && brandParams === 0) {
+        return;
+    }
+    // Pasar los params a lowecase
+    const categoryParamsLower = categoryParams.map(cat => cat.toLowerCase());
+    const brandParamsLower = brandParams.map(brand => brand.toLowerCase());
 
+    const checkboxesCategory = document.querySelectorAll('input[name="category"]');
+    const checkboxesBrand = document.querySelectorAll('input[name="brand"]');
+
+    checkboxesCategory.forEach(checkbox => {
+        if (categoryParamsLower.includes(checkbox.value.toLowerCase())) {
+            checkbox.checked = true;
+        }
+    });
+    checkboxesBrand.forEach(checkbox => {
+        if (brandParamsLower.includes(checkbox.value.toLowerCase())) {
+            checkbox.checked = true;
+        }
+    });
+
+    applyFilters();
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializa productos y filtros al cargar la página
-    fetchAndStoreProducts();
+    fetchAndStoreProducts().then(() => {
+        logCheckboxes();
+    });
     applyFilters();
 })

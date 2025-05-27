@@ -13,61 +13,61 @@
 
 <body>
 
-    <header>
-        <nav id="navbar">
-            <!-- Logo + 2 Categories (Ul) + search & cart-->
-            <div class="logo">
-                <a href="/">
-                    <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
-                </a>
+<header>
+    <nav id="navbar">
+        <!-- Logo + 2 Categories (Ul) + search & cart-->
+        <div class="logo">
+            <a href="/">
+                <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
+            </a>
+        </div>
+        <div class="menu">
+            <ul class="categories">
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="/shop?category=downpipes">DownPipes</a></li>
+                        <li class="category"><a href="/shop?category=embragues">Embragues</a></li>
+                        <li class="category"><a href="/shop?category=frenos">Frenos</a></li>
+                        <li class="category"><a href="/shop?category=suspension">Suspension</a></li>
+                        <li class="category"><a href="/shop?category=escapes">Escapes</a></li>
+                        <li class="category"><a href="/shop?category=intercoolers">Intercoolers</a></li>
+                        <li class="category"><a href="/shop?category=radiadores">Radiadores</a></li>
+                    </ul>
+                </li>
+                <li class="category-dropdown">
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
+                    <ul class="dropdown-menu">
+                        <li class="category"><a href="/shop?category=body%20kits">Body Kits</a></li>
+                        <li class="category"><a href="/shop?category=vinilos">Vinilos</a></li>
+                        <li class="category"><a href="/shop?category=pegatinas">Pegatinas</a></li>
+                        <li class="category"><a href="/shop?category=alerones">Alerones</a></li>
+                        <li class="category"><a href="/shop?category=frontales">Frontales</a></li>
+                        <li class="category"><a href="/shop?category=difusores">Difusores</a></li>
+                        <li class="category"><a href="/shop?category=paragolpes">Paragolpes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="search-cart">
+            <div class="search">
+                <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
+                    <img src="search.svg" alt="Icono de búsqueda" />
+                </button>
             </div>
-            <div class="menu">
-                <ul class="categories">
-                    <li class="category-dropdown">
-                        <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
-                        <ul class="dropdown-menu">
-                            <li class="category"><a href="#">DownPipes</a></li>
-                            <li class="category"><a href="#">Embragues</a></li>
-                            <li class="category"><a href="#">Frenos</a></li>
-                            <li class="category"><a href="#">Suspension</a></li>
-                            <li class="category"><a href="#">Escapes</a></li>
-                            <li class="category"><a href="#">Intercoolers</a></li>
-                            <li class="category"><a href="#">Radiadores</a></li>
-                        </ul>
-                    </li>
-                    <li class="category-dropdown">
-                        <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
-                        <ul class="dropdown-menu">
-                            <li class="category"><a href="#">Body Kits</a></li>
-                            <li class="category"><a href="#">Vinilos</a></li>
-                            <li class="category"><a href="#">Pegatinas</a></li>
-                            <li class="category"><a href="#">Alerones</a></li>
-                            <li class="category"><a href="#">Frontales</a></li>
-                            <li class="category"><a href="#">Difusores</a></li>
-                            <li class="category"><a href="#">Paragolpes</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="user">
+                <button id="user" class="search-cart-button" aria-label="Sign-in" onclick="userSignup()">
+                    <img src="user.svg" alt="Icono de Logeo" />
+                </button>
             </div>
-            <div class="search-cart">
-                <div class="search">
-                    <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
-                        <img src="search.svg" alt="Icono de búsqueda" />
-                    </button>
-                </div>
-                <div class="user">
-                    <button id="user" class="search-cart-button" aria-label="Sign-in" onclick="userSignup()">
-                        <img src="user.svg" alt="Icono de Logeo" />
-                    </button>
-                </div>
-                <div class="cart">
-                    <button class="search-cart-button" aria-label="Cart" onclick="window.location.href = `/cart`">
-                        <img src="cart.svg" alt="Icono de Carrito" />
-                    </button>
-                </div>
+            <div class="cart">
+                <button class="search-cart-button" aria-label="Cart" onclick="window.location.href = `/cart`">
+                    <img src="cart.svg" alt="Icono de Carrito" />
+                </button>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <main>
         <aside id="sidebar"> <!-- Fetch categories, brands, price & stock to filter items-->
