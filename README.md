@@ -7,26 +7,26 @@
 
 Este proyecto fué hecho para un trabajo de grado.
 
-Carbon Craft Labs es una plataforma de e-commerce especializada en la venta de piezas automotrices de alto rendimiento y accesorios de detailing. [1](#0-0)  El proyecto implementa una experiencia web moderna con animaciones 3D interactivas, gestión de carrito de compras, procesamiento de órdenes y autenticación de usuarios.
+Carbon Craft Labs es una plataforma de e-commerce especializada en la venta de piezas automotrices de alto rendimiento y accesorios de detailing.  El proyecto implementa una experiencia web moderna con animaciones 3D interactivas, gestión de carrito de compras, procesamiento de órdenes y autenticación de usuarios.
 
 ## ✨ Características Principales
 
-- **Página de inicio interactiva**: Experiencia visual con animaciones 3D que responden al movimiento del cursor [2](#0-1) 
-- **Catálogo de productos**: Sistema completo de navegación por categorías (Performance y Detailing) [3](#0-2) 
+- **Página de inicio interactiva**: Experiencia visual con animaciones 3D que responden al movimiento del cursor
+- **Catálogo de productos**: Sistema completo de navegación por categorías (Performance y Detailing)
 - **Carrito de compras**: Gestión persistente del carrito usando cookies del navegador
-- **Procesamiento de órdenes**: Sistema transaccional con validación de inventario [4](#0-3) 
-- **Autenticación**: Integración con Clerk para gestión de usuarios [5](#0-4) 
+- **Procesamiento de órdenes**: Sistema transaccional con validación de inventario
+- **Autenticación**: Integración con Clerk para gestión de usuarios
 - **Búsqueda avanzada**: Funcionalidad de filtrado por categorías, marcas y especificaciones
 
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
 - **HTML5, CSS3, JavaScript Vanilla**: Interfaz de usuario modular
-- **Vite 6.3.5**: Servidor de desarrollo y herramienta de construcción [6](#0-5) 
+- **Vite 6.3.5**: Servidor de desarrollo y herramienta de construcción
 - **Three.js 0.176.0**: Animaciones 3D para la página de inicio
 
 ### Backend
-- **Express.js 5.1.0**: Servidor API RESTful [7](#0-6) 
+- **Express.js 5.1.0**: Servidor API RESTful
 - **MySQL2**: Base de datos relacional para productos y órdenes
 - **CORS**: Manejo de peticiones cross-origin
 
@@ -67,7 +67,7 @@ proyecto-lenguaje/
 - pnpm (recomendado)
 
 ### Variables de Entorno
-Crea un archivo `.env` con las siguientes variables: [8](#0-7) 
+Crea un archivo `.env` con las siguientes variables:
 
 ```env
 DB_HOST=localhost
@@ -86,7 +86,7 @@ pnpm install
 ```
 
 ### Configuración de Base de Datos
-Ejecuta el script SQL para crear las tablas necesarias: [9](#0-8) 
+Ejecuta el script SQL para crear las tablas necesarias:
 
 ```bash
 mysql -u tu_usuario -p tu_base_de_datos < server/tablesandinsertion.sql
@@ -102,10 +102,10 @@ El servidor estará disponible en `http://localhost:5173`
 ## 📡 API Endpoints
 
 ### GET /api/products
-Obtiene todos los productos con información completa incluyendo categorías, marcas, características y especificaciones. [10](#0-9) 
+Obtiene todos los productos con información completa incluyendo categorías, marcas, características y especificaciones.
 
 ### POST /api/orders
-Procesa nuevas órdenes con validación de inventario y gestión transaccional. [11](#0-10) 
+Procesa nuevas órdenes con validación de inventario y gestión transaccional.
 
 **Formato de petición:**
 ```json
@@ -123,7 +123,7 @@ Procesa nuevas órdenes con validación de inventario y gestión transaccional. 
 
 ## 🗄️ Esquema de Base de Datos
 
-La base de datos utiliza un diseño relacional normalizado con las siguientes entidades principales: [12](#0-11) 
+La base de datos utiliza un diseño relacional normalizado con las siguientes entidades principales:
 
 - **products**: Catálogo principal de productos
 - **categories/subcategories**: Organización jerárquica de productos
@@ -149,11 +149,11 @@ La base de datos utiliza un diseño relacional normalizado con las siguientes en
 - Alerones
 - Frontales
 - Difusores
-- Paragolpes [13](#0-12) 
+- Paragolpes
 
 ## 🔐 Autenticación
 
-El sistema utiliza Clerk para la gestión de autenticación: [14](#0-13) 
+El sistema utiliza Clerk para la gestión de autenticación:
 
 - Registro e inicio de sesión de usuarios
 - Gestión de perfiles de usuario
@@ -170,14 +170,14 @@ El sistema utiliza Clerk para la gestión de autenticación: [14](#0-13)
 
 ## 🎨 Experiencia de Usuario
 
-- **Página de inicio dinámica**: Animaciones 3D que cambian según la posición del cursor [2](#0-1) 
+- **Página de inicio dinámica**: Animaciones 3D que cambian según la posición del cursor
 - **Navegación intuitiva**: Sistema de categorías dropdown y búsqueda
 - **Responsive design**: Adaptado para diferentes dispositivos
 - **Feedback visual**: Estados de carga y confirmaciones de acciones
 
 ## 📧 Newsletter
 
-Sistema de suscripción a newsletter integrado en la página principal: [15](#0-14) 
+Sistema de suscripción a newsletter integrado en la página principal:
 
 ## 🤝 Contribución
 
