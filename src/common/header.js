@@ -106,4 +106,48 @@ function searchToggle() {
 }
 
 
-// Hamburguesa en movil (TODO: Implementar)
+// ==== Menú hamburguesa en móvil ====
+
+const mobileMenuContainer = document.createElement('nav');
+mobileMenuContainer.id = 'mobile-menu';
+
+const desktopMenu = document.querySelector('.menu .categories');
+if (desktopMenu) {
+    // Clonar la lista de <ul> con todo su contenido
+    const mobileMenuList = desktopMenu.cloneNode(true);
+    mobileMenuContainer.appendChild(mobileMenuList);
+}
+
+const closeBtn = document.createElement('button');
+closeBtn.textContent = '✕'; // Icono simple de cerrar
+closeBtn.style.position = 'absolute';
+closeBtn.style.top = '1rem';
+closeBtn.style.right = '1rem';
+closeBtn.style.background = 'transparent';
+closeBtn.style.border = 'none';
+closeBtn.style.fontSize = '1.5rem';
+closeBtn.style.color = '#fff';
+closeBtn.style.cursor = 'pointer';
+closeBtn.addEventListener('click', () => {
+    mobileMenuContainer.classList.remove('open');
+});
+
+mobileMenuContainer.appendChild(closeBtn);
+document.body.appendChild(mobileMenuContainer);
+
+const hamburgerBtn = document.getElementById('hamburger-btn');
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenuContainer.classList.toggle('open');
+    });
+}
+
+document.addEventListener('click', (e) => {
+    if (
+        mobileMenuContainer.classList.contains('open') &&
+        !mobileMenuContainer.contains(e.target) &&
+        !hamburgerBtn.contains(e.target)
+    ) {
+        mobileMenuContainer.classList.remove('open');
+    }
+});

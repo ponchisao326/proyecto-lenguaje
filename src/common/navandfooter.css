@@ -219,6 +219,116 @@ nav {
     border: none;
 }
 
+/* 1) Ocultar botón hamburguesa por defecto (solo se mostrará en móvil) */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+/* 2) Estilos para el menú móvil overlay/drawer (oculto por defecto) */
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* fuera de pantalla */
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: rgba(24, 28, 36, 0.95);
+    color: #fff;
+    z-index: 1500;
+    transition: right 0.3s ease;
+    padding-top: 4rem; /* para que no quede debajo del header */
+}
+
+#mobile-menu ul {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+#mobile-menu li {
+    margin: 1rem 0;
+}
+
+#mobile-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* 3) Cuando #mobile-menu tenga la clase .open, se muestra */
+#mobile-menu.open {
+    right: 0;
+}
+
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-button i {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* 4) Media query: en pantallas <768px ocultamos la nav normal y mostramos la hamburguesa */
+@media (max-width: 768px) {
+
+    /* Ocultar menús “desktop” */
+    .menu {
+        display: none;
+    }
+
+    /* Mostrar el botón de hamburguesa */
+    .hamburger-btn {
+        display: flex;
+        margin-right: 1rem;
+    }
+
+    /* Ajuste de .search-cart para que no se sobreponga */
+    .search-cart {
+        gap: 0.5rem;
+    }
+
+    /* Opcional: ajustar altura del header para que se vea bien con el botón */
+    nav {
+        align-items: center;
+    }
+}
+
+
 /* Media Queries para Carbon Craft Labs */
 
 /* Dispositivos grandes (desktops, 1200px en adelante) */

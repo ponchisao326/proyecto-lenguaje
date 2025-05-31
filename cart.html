@@ -13,40 +13,81 @@
 <body>
 <header>
     <nav id="navbar">
-        <!-- Logo + 2 Categories (Ul) + search & cart-->
         <div class="logo">
             <a href="/">
                 <img src="/CCLabs%20(recortada).svg" alt="Carbon Craft Labs Logo" />
             </a>
         </div>
+
+        <!-- Botón de hamburguesa (visible solo en móvil) -->
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Menú">
+            <span class="hamburger-icon"></span>
+            <span class="hamburger-icon"></span>
+            <span class="hamburger-icon"></span>
+        </button>
+
+        <!-- Menú “normal” (oculto en móvil) -->
         <div class="menu">
             <ul class="categories">
                 <li class="category-dropdown">
-                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Performance ▼</a>
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">
+                        Performance ▼
+                    </a>
                     <ul class="dropdown-menu">
-                        <li class="category"><a href="/shop?category=downpipes">DownPipes</a></li>
-                        <li class="category"><a href="/shop?category=embragues">Embragues</a></li>
-                        <li class="category"><a href="/shop?category=frenos">Frenos</a></li>
-                        <li class="category"><a href="/shop?category=suspension">Suspension</a></li>
-                        <li class="category"><a href="/shop?category=escapes">Escapes</a></li>
-                        <li class="category"><a href="/shop?category=intercoolers">Intercoolers</a></li>
-                        <li class="category"><a href="/shop?category=radiadores">Radiadores</a></li>
+                        <li class="category">
+                            <a href="/shop?category=downpipes">DownPipes</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=embragues">Embragues</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=frenos">Frenos</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=suspension">Suspension</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=escapes">Escapes</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=intercoolers">Intercoolers</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=radiadores">Radiadores</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="category-dropdown">
-                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">Detailing ▼</a>
+                    <a class="dropdown-title" aria-haspopup="true" aria-expanded="false">
+                        Detailing ▼
+                    </a>
                     <ul class="dropdown-menu">
-                        <li class="category"><a href="/shop?category=body%20kits">Body Kits</a></li>
-                        <li class="category"><a href="/shop?category=vinilos">Vinilos</a></li>
-                        <li class="category"><a href="/shop?category=pegatinas">Pegatinas</a></li>
-                        <li class="category"><a href="/shop?category=alerones">Alerones</a></li>
-                        <li class="category"><a href="/shop?category=frontales">Frontales</a></li>
-                        <li class="category"><a href="/shop?category=difusores">Difusores</a></li>
-                        <li class="category"><a href="/shop?category=paragolpes">Paragolpes</a></li>
+                        <li class="category">
+                            <a href="/shop?category=body%20kits">Body Kits</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=vinilos">Vinilos</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=pegatinas">Pegatinas</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=alerones">Alerones</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=frontales">Frontales</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=difusores">Difusores</a>
+                        </li>
+                        <li class="category">
+                            <a href="/shop?category=paragolpes">Paragolpes</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </div>
+
         <div class="search-cart">
             <div class="search">
                 <button id="prueba" class="search-cart-button" aria-label="Buscar" onclick="searchToggle()">
@@ -55,7 +96,7 @@
             </div>
             <div class="user">
                 <button id="user-button" class="search-cart-button" aria-label="Sign-in">
-                    <img id='user-svg' src="user.svg" alt="Icono de Logeo" />
+                    <img id="user-svg" src="user.svg" alt="Icono de Logeo" />
                 </button>
             </div>
             <div class="cart">
@@ -65,6 +106,7 @@
             </div>
         </div>
     </nav>
+
 </header>
 
 <main>
